@@ -1,4 +1,4 @@
-package model;
+package enums;
 
 public enum Quantity {
     GRAM("гр"),

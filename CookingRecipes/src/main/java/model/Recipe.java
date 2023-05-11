@@ -1,23 +1,23 @@
 package model;
 
 import org.springframework.data.util.Pair;
+import enums.Category;
+import enums.Quantity;
 
 import java.util.HashMap;
-import java.util.List;
+import java.util.Map;
 
 public class Recipe {
-
+    private int id;
     private String name;
 
-    private HashMap<String, Pair<Double, Quantity>> products;
+    private Map<String, Pair<Double, Quantity>> products = new HashMap<>();
 
     private Category category;
 
     private String description;
 
-    private List<Double> votes;
-
-    private double rate;
+    private Double rate;
 
     private int userId;
 }
