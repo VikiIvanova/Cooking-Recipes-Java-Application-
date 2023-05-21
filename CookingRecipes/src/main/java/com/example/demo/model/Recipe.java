@@ -3,6 +3,7 @@ package com.example.demo.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.util.Pair;
@@ -14,11 +15,12 @@ import java.util.Map;
 
 @Entity
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Recipe {
     @Id
-    private int id;
+    private Long id;
 
     private String name;
 
