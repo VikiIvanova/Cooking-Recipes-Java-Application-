@@ -21,7 +21,7 @@ public class RecipeController {
         this.recipeMapper = recipeMapper;
     }
 
-    @GetMapping
+    @GetMapping("/allrecipes")
     public List<RecipeDto> getAllRecipes() {
         final List<Recipe> recipesList = recipeService.getAllRecipes();
 
@@ -30,7 +30,7 @@ public class RecipeController {
                 .collect(Collectors.toList());
     }
 
-    @PostMapping
+    @PostMapping("/createrecipe")
     public Long createRecipe(@RequestBody RecipeDto recipe) {
         return recipeService.createRecipe(recipeMapper.toEntity(recipe));
     }
