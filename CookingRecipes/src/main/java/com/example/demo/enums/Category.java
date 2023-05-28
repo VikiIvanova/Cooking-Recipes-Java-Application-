@@ -1,4 +1,5 @@
 package com.example.demo.enums;
+
 public enum Category {
     SALADS("Салати"),
     STARTERS("Предястия"),
