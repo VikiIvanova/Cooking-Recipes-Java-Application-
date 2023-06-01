@@ -1,33 +1,63 @@
 package com.example.demo.mapper;
-
 import com.example.demo.dto.RecipeDto;
+import com.example.demo.dto.ProductDto;
+import com.example.demo.model.Product;
 import com.example.demo.model.Recipe;
 import org.springframework.stereotype.Component;
+
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Component
 public class RecipeMapper {
 
     public RecipeDto toDto(Recipe entity) {
+        Set<ProductDto> products = entity.getProducts().stream()
+                .map(this::toProductDto)
+                .collect(Collectors.toSet());
+
         return RecipeDto.builder()
                 .id(entity.getId())
                 .name(entity.getName())
-                .products(entity.getProducts())
+                .products(products)
                 .category(entity.getCategory())
                 .description(entity.getDescription())
                 .rate(entity.getRate())
-                .userId(entity.getUserId())
+                .user(entity.getUser())
+                .recipeLovers(entity.getRecipeLovers())
                 .build();
     }
 
     public Recipe toEntity(RecipeDto dto) {
+        Set<Product> products = dto.getProducts().stream()
+                .map(this::toProductEntity)
+                .collect(Collectors.toSet());
+
         return Recipe.builder()
                 .id(dto.getId())
                 .name(dto.getName())
-                .products(dto.getProducts())
+                .products(products)
                 .category(dto.getCategory())
                 .description(dto.getDescription())
                 .rate(dto.getRate())
-                .userId(dto.getUserId())
+                .user(dto.getUser())
+                .recipeLovers(dto.getRecipeLovers())
+                .build();
+    }
+
+    private ProductDto toProductDto(Product product) {
+        return ProductDto.builder()
+                .name(product.getName())
+                .measure(product.getMeasure())
+                .quantity(product.getQuantity())
+                .build();
+    }
+
+    private Product toProductEntity(ProductDto productDto) {
+        return Product.builder()
+                .name(productDto.getName())
+                .measure(productDto.getMeasure())
+                .quantity(productDto.getQuantity())
                 .build();
     }
 }
