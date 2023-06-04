@@ -1,6 +1,5 @@
 package com.example.demo.enums;
 
-
 public enum Measure {
     GRAM("гр"),
     MILLILITRES("мл"),
