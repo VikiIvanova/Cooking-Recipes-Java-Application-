@@ -37,7 +37,7 @@ public class RecipeService {
             recipeToEdit.setCategory(recipe.getCategory());
             recipeToEdit.setDescription(recipe.getDescription());
             recipeToEdit.setRate(recipe.getRate());
-            recipeToEdit.setUser(recipe.getUser());
+            recipeToEdit.setOwner(recipe.getOwner());
             recipeToEdit.setRecipeLovers(recipe.getRecipeLovers());
 
             recipeRepository.save(recipeToEdit);

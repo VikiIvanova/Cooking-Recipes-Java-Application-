@@ -23,7 +23,7 @@ public class RecipeMapper {
                 .category(entity.getCategory())
                 .description(entity.getDescription())
                 .rate(entity.getRate())
-                .user(entity.getUser())
+                .user(entity.getOwner())
                 .build();
     }
 
@@ -38,7 +38,7 @@ public class RecipeMapper {
                 .category(dto.getCategory())
                 .description(dto.getDescription())
                 .rate(dto.getRate())
-                .user(dto.getUser())
+                .owner(dto.getUser())
                 .build();
     }
 
