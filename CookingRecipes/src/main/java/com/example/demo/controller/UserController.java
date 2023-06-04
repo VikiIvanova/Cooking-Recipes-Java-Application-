@@ -1,10 +1,8 @@
 package com.example.demo.controller;
 
-import com.example.demo.dto.CreateRecipeDto;
 import com.example.demo.dto.CreateUserDto;
 import com.example.demo.mapper.UserMapper;
 
-import com.example.demo.model.Recipe;
 import com.example.demo.model.User;
 import com.example.demo.service.UserService;
 import org.springframework.web.bind.annotation.*;
