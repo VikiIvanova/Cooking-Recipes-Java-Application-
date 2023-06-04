@@ -37,8 +37,14 @@ public class RecipeController {
     }
 
     @PutMapping("/{id}")
-    public void updateRecipe(@PathVariable Long id, @RequestBody @Valid CreateRecipeDto recipeDto) {
+    public void updateRecipe(@PathVariable("id") Long id, @RequestBody @Valid CreateRecipeDto recipeDto) {
         recipeService.updateRecipe(id, recipeMapper.toEntity(recipeDto));
     }
+
+    @DeleteMapping("/{id}")
+    public void deleteRecipe(@PathVariable("id") Long id) {
+        recipeService.deleteRecipe(id);
+    }
+
 
 }

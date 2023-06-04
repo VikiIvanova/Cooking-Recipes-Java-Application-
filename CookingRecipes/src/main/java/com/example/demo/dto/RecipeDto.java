@@ -22,6 +22,6 @@ public class RecipeDto {
     private Category category;
     private String description;
     private Double rate;
-    private User user;
+    private User owner;
     private Set<User> recipeLovers = new HashSet<>();
 }
