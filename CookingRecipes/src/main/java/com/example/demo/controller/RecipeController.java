@@ -1,9 +1,10 @@
 package com.example.demo.controller;
 
-import com.example.demo.dto.RecipeDto;
+import com.example.demo.dto.CreateRecipeDto;
 import com.example.demo.mapper.RecipeMapper;
 import com.example.demo.model.Recipe;
 import com.example.demo.service.RecipeService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,7 +23,7 @@ public class RecipeController {
     }
 
     @GetMapping("/allrecipes")
-    public List<RecipeDto> getAllRecipes() {
+    public List<CreateRecipeDto> getAllRecipes() {
         final List<Recipe> recipesList = recipeService.getAllRecipes();
 
         return recipesList.stream()
@@ -31,7 +32,13 @@ public class RecipeController {
     }
 
     @PostMapping("/createrecipe")
-    public Long createRecipe(@RequestBody RecipeDto recipe) {
-        return recipeService.createRecipe(recipeMapper.toEntity(recipe));
+    public Long createRecipe(@RequestBody CreateRecipeDto recipeDto) {
+        return recipeService.createRecipe(recipeMapper.toEntity(recipeDto));
     }
+
+    @PutMapping("/{id}")
+    public void updateRecipe(@PathVariable Long id, @RequestBody @Valid CreateRecipeDto recipeDto) {
+        recipeService.updateRecipe(id, recipeMapper.toEntity(recipeDto));
+    }
+
 }

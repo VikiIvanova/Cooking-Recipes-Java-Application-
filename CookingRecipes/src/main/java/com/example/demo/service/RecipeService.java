@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RecipeService {
@@ -25,6 +26,25 @@ public class RecipeService {
 
     public Long createRecipe(Recipe recipe) {
        return recipeRepository.save(recipe).getId();
+    }
+
+    public Recipe updateRecipe(Long id, Recipe recipe) {
+        Optional<Recipe> optionalRecipe = recipeRepository.findById(id);
+        if (optionalRecipe.isPresent()) {
+            Recipe recipeToEdit = optionalRecipe.get();
+            recipeToEdit.setName(recipe.getName());
+            recipeToEdit.setProducts(recipe.getProducts());
+            recipeToEdit.setCategory(recipe.getCategory());
+            recipeToEdit.setDescription(recipe.getDescription());
+            recipeToEdit.setRate(recipe.getRate());
+            recipeToEdit.setUser(recipe.getUser());
+            recipeToEdit.setRecipeLovers(recipe.getRecipeLovers());
+
+            recipeRepository.save(recipeToEdit);
+        } else {
+           recipeRepository.save(recipe);
+        }
+        return recipe;
     }
 
 }
