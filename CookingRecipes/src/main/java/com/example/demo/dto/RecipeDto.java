@@ -1,16 +1,13 @@
 package com.example.demo.dto;
 
 import com.example.demo.enums.Category;
-import com.example.demo.enums.Measure;
-import com.example.demo.model.Product;
+
 import com.example.demo.model.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.util.Pair;
 
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
