@@ -1,9 +1,13 @@
 package com.example.demo.service;
 
+import com.example.demo.dto.RecipeDto;
+import com.example.demo.enums.Category;
+import com.example.demo.mapper.CreateRecipeMapper;
 import com.example.demo.mapper.RecipeMapper;
 import com.example.demo.model.Recipe;
 import com.example.demo.repository.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,10 +17,12 @@ import java.util.Optional;
 public class RecipeService {
     private final RecipeRepository recipeRepository;
     private final RecipeMapper recipeMapper;
+    private final CreateRecipeMapper createRecipeMapper;
 
     @Autowired
-    public RecipeService(RecipeRepository recipeRepository, RecipeMapper recipeMapper) {
+    public RecipeService(RecipeRepository recipeRepository, CreateRecipeMapper createRecipeMapper, RecipeMapper recipeMapper) {
         this.recipeRepository = recipeRepository;
+        this.createRecipeMapper = createRecipeMapper;
         this.recipeMapper = recipeMapper;
     }
 
@@ -49,6 +55,23 @@ public class RecipeService {
 
     public void deleteRecipe(Long id) {
         recipeRepository.deleteById(id);
+    }
+
+    public RecipeDto getRecipeById(Long id) {
+        Optional<Recipe> optionalRecipe = recipeRepository.findById(id);
+        if (optionalRecipe.isPresent()) {
+            Recipe recipe = optionalRecipe.get();
+            return recipeMapper.toDto(recipe);
+        } else {
+           return null;
+        }
+    }
+
+    public List<Recipe> searchRecipes(String name, Category category, String productName) {
+        if (productName != null && !productName.isEmpty()) {
+            return recipeRepository.findByNameAndCategoryAndProducts_Name(name, category, productName);
+        }
+        return recipeRepository.findByNameAndCategory(name, category);
     }
 
 }
