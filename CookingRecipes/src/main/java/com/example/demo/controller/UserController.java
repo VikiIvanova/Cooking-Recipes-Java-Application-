@@ -1,10 +1,12 @@
 package com.example.demo.controller;
 
 import com.example.demo.dto.CreateUserDto;
+import com.example.demo.dto.UpdateUserDto;
 import com.example.demo.mapper.UserMapper;
 
 import com.example.demo.model.User;
 import com.example.demo.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,7 +33,14 @@ public class UserController {
         final List<User> usersList = userService.getAllUsers();
 
         return usersList.stream()
-                .map(userMapper::toDto)
+                .map(userMapper::toCreateUserDto)
                 .collect(Collectors.toList());
     }
+
+    @PutMapping("/update/{id}")
+    public User updateUser (@PathVariable Long id, @RequestBody @Valid UpdateUserDto userDto){
+        userService.updateUser(id,userMapper.toEntity(userDto));
+        return userMapper.toEntity(userDto);
+    }
+
 }
