@@ -4,14 +4,24 @@ import com.example.demo.dto.RecipeDto;
 import com.example.demo.enums.Category;
 import com.example.demo.mapper.CreateRecipeMapper;
 import com.example.demo.mapper.RecipeMapper;
+import com.example.demo.model.Product;
 import com.example.demo.model.Recipe;
 import com.example.demo.repository.RecipeRepository;
+import io.micrometer.common.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
+
+import static org.springframework.data.domain.ExampleMatcher.GenericPropertyMatchers.contains;
 
 @Service
 public class RecipeService {
@@ -26,12 +36,12 @@ public class RecipeService {
         this.recipeMapper = recipeMapper;
     }
 
-    public List<Recipe> getAllRecipes(){
+    public List<Recipe> getAllRecipes() {
         return recipeRepository.findAll();
     }
 
     public Long createRecipe(Recipe recipe) {
-       return recipeRepository.save(recipe).getId();
+        return recipeRepository.save(recipe).getId();
     }
 
     public Recipe updateRecipe(Long id, Recipe recipe) {
@@ -48,7 +58,7 @@ public class RecipeService {
 
             recipeRepository.save(recipeToEdit);
         } else {
-           recipeRepository.save(recipe);
+            recipeRepository.save(recipe);
         }
         return recipe;
     }
@@ -63,15 +73,16 @@ public class RecipeService {
             Recipe recipe = optionalRecipe.get();
             return recipeMapper.toDto(recipe);
         } else {
-           return null;
+            return null;
         }
     }
 
     public List<Recipe> searchRecipes(String name, Category category, String productName) {
-        if (productName != null && !productName.isEmpty()) {
-            return recipeRepository.findByNameAndCategoryAndProducts_Name(name, category, productName);
-        }
-        return recipeRepository.findByNameAndCategory(name, category);
+        return recipeRepository.searchRecipes(name, category, productName);
     }
 
 }
+
+
+
+

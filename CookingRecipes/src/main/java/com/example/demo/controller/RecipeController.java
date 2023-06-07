@@ -62,10 +62,13 @@ public class RecipeController {
     }
 
     @GetMapping("/search")
-    public List<RecipeDto> searchRecipes(@RequestParam(value = "name", required = false) String name, @RequestParam(value = "category", required = false) Category category,
-                                         @RequestParam(value = "productName", required = false) String productName) {
-        return this.recipeService.searchRecipes(name, category, productName)
-                .stream()
+    public List<RecipeDto> searchRecipes(
+            @RequestParam(value = "name", required = false) String name,
+            @RequestParam(value = "category", required = false) Category category,
+            @RequestParam(value = "productName", required = false) String productName
+    ) {
+        List<Recipe> recipes = recipeService.searchRecipes(name, category, productName);
+        return recipes.stream()
                 .map(recipeMapper::toDto)
                 .collect(Collectors.toList());
     }
