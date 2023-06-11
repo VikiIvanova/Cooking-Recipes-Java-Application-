@@ -1,6 +1,5 @@
 package com.example.demo.dto;
 
-import com.example.demo.model.FavouriteRecipe;
 import com.example.demo.model.Recipe;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,5 +19,5 @@ public class UserDto {
     private String email;
     private String password;
     private Set<Recipe> recipes = new HashSet<>();
-    private Set<FavouriteRecipe> favourites = new HashSet<>();
+    private Set<Recipe> favourites = new HashSet<>();
 }

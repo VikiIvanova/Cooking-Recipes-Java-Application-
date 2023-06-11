@@ -8,18 +8,16 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class UserMapper {
-    public UserDto toUserDto(User user) {
+    private UserDto toUserDto(User user) {
         return UserDto.builder()
                 .id(user.getId())
                 .username(user.getUsername())
                 .email(user.getEmail())
                 .password(user.getPassword())
-                .recipes(user.getRecipes())
-                .favourites(user.getFavourites())
                 .build();
     }
 
-    public User toEntity(UserDto userDto) {
+    private User toUEntity(UserDto userDto) {
         return User.builder()
                 .username(userDto.getUsername())
                 .email(userDto.getEmail())
