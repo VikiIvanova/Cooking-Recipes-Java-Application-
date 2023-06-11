@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProductDto {
-    private String name;
-    private Measure measure;
-    private Double quantity;
+        private String name;
+        private Measure measure;
+        private Double quantity;
 }

@@ -1,7 +1,6 @@
 package com.example.demo.dto;
 
-import com.example.demo.model.FavouriteRecipe;
-import com.example.demo.model.Recipe;
+import com.example.demo.model.FavouriteRecipes;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,5 +19,5 @@ public class UpdateUserDto {
     private String password;
     @Email(message = "Invalid email address!")
     private String email;
-    private Set<FavouriteRecipe> favourites = new HashSet<>();
+    private Set<FavouriteRecipes> favourites = new HashSet<>();
 }

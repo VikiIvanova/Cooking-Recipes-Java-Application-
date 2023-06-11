@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 
 @Component
 public class RecipeMapper {
+
     public CreateRecipeDto toDto(Recipe entity) {
         Set<ProductDto> products = entity.getProducts().stream()
                 .map(this::toProductDto)
@@ -27,20 +28,18 @@ public class RecipeMapper {
                 .build();
     }
 
-    public RecipeDto toRecipeDto(Recipe entity){
+    public RecipeDto toRecipeDto(Recipe entity) {
         Set<ProductDto> products = entity.getProducts().stream()
                 .map(this::toProductDto)
                 .collect(Collectors.toSet());
 
         return RecipeDto.builder()
-                .id(entity.getId())
                 .name(entity.getName())
                 .products(products)
                 .category(entity.getCategory())
                 .description(entity.getDescription())
                 .rate(entity.getRate())
                 .owner(entity.getOwner())
-                .recipeLovers(entity.getRecipeLovers())
                 .build();
     }
 
@@ -76,18 +75,4 @@ public class RecipeMapper {
     }
 
 
-    public Recipe toEntity(RecipeDto dto) {
-        Set<Product> products = dto.getProducts().stream()
-                .map(this::toProductEntity)
-                .collect(Collectors.toSet());
-
-        return Recipe.builder()
-                .name(dto.getName())
-                .products(products)
-                .category(dto.getCategory())
-                .description(dto.getDescription())
-                .rate(dto.getRate())
-                .owner(dto.getOwner())
-                .build();
-    }
 }

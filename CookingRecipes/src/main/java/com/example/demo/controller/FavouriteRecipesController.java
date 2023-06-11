@@ -1,45 +1,41 @@
 package com.example.demo.controller;
 
-import com.example.demo.dto.FavouriteRecipesDto;
-import com.example.demo.mapper.FavouriteRecipeMapper;
+import com.example.demo.dto.AddRecipeAsFavouriteDto;
+import com.example.demo.mapper.RecipeMapper;
+import com.example.demo.model.Recipe;
 import com.example.demo.service.FavouriteRecipesService;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/favouriterecipes")
 public class FavouriteRecipesController {
     private final FavouriteRecipesService favouriteRecipesService;
-    private final FavouriteRecipeMapper favouriteRecipeMapper;
+    private final RecipeMapper recipeMapper;
 
-    public FavouriteRecipesController(FavouriteRecipesService favouriteRecipesService, FavouriteRecipeMapper favouriteRecipeMapper) {
+    public FavouriteRecipesController(FavouriteRecipesService favouriteRecipesService, RecipeMapper recipeMapper) {
         this.favouriteRecipesService = favouriteRecipesService;
-        this.favouriteRecipeMapper = favouriteRecipeMapper;
+        this.recipeMapper = recipeMapper;
     }
 
     @PostMapping("/addrecipetofavourite")
-    public void addRecipeToFavourites(@RequestBody FavouriteRecipesDto favouriteRecipesDto) {
-       favouriteRecipesService.addRecipeToFavourites(favouriteRecipeMapper.toEntity(favouriteRecipesDto));
+    public Long addRecipeToFavourites(@RequestBody AddRecipeAsFavouriteDto addRecipeAsFavouriteDto) {
+      return favouriteRecipesService.addRecipeAsFavourite(
+              addRecipeAsFavouriteDto.getRecipeId(),
+              addRecipeAsFavouriteDto.getUserId()
+      );
     }
-    /*
 
     @GetMapping("/allfavouriterecipes/{userId}")
-    public List<RecipeDto> allFavouriteRecipes(@PathVariable Long userId){
-        List<RecipeDto> recipeDto = new ArrayList<>();
-        for(Recipe recipe : favouriteRecipesService.showAllFavouriteRecipes(userId)){
-            recipeDto.add(recipeMapper.toRecipeDto(recipe));
+    public List<Long> allFavouriteRecipes(@PathVariable Long userId){
+        List<Long> recipeDto = new ArrayList<>();
+        for(Recipe r : favouriteRecipesService.showAllFavouriteRecipesByUser(userId)){
+            recipeDto.add(recipeMapper.toRecipeDto(r).getId());
         }
         return recipeDto;
     }
-
-    @GetMapping("/allrecipelovers/{recipeId}")
-    public List<UserDto> allRecipeLover(@PathVariable Long recipeId){
-        List<UserDto> userDto = new ArrayList<>();
-        for(User user : favouriteRecipesService.showAllRecipeLovers(recipeId)){
-            userDto.add(userMapper.toUserDto(user));
-        }
-        return userDto;
-    }
-     */
 
 
 }

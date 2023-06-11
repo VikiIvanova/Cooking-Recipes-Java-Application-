@@ -11,6 +11,8 @@ import java.util.Set;
 @Table(name = "app_user")
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,10 +30,6 @@ public class User {
     @OneToMany(mappedBy = "owner")
     private Set<Recipe> recipes = new HashSet<>();
 
-   // @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-    //@JoinTable(name = "favourite_recipes",
-    //        joinColumns = @JoinColumn(name = "user_id" ),
-    //        inverseJoinColumns = @JoinColumn(name = "recipe_id"))
-    @OneToMany(mappedBy = "recipeId")
-    private Set<FavouriteRecipe> favourites = new HashSet<>();
+    @OneToMany(mappedBy = "user")
+    private Set<FavouriteRecipes> favourites = new HashSet<>();
 }

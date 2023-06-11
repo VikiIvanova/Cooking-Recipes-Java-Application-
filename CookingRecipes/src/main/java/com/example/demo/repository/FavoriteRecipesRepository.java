@@ -1,6 +1,6 @@
 package com.example.demo.repository;
-import com.example.demo.model.FavouriteRecipe;
+import com.example.demo.model.FavouriteRecipes;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface FavoriteRecipesRepository extends JpaRepository<FavouriteRecipe, Long>{
+public interface FavoriteRecipesRepository extends JpaRepository<FavouriteRecipes, Long>{
 }
