@@ -2,6 +2,7 @@ package com.example.demo.dto;
 
 import com.example.demo.enums.Category;
 
+import com.example.demo.model.FavouriteRecipe;
 import com.example.demo.model.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,5 +24,5 @@ public class RecipeDto {
     private String description;
     private Double rate;
     private User owner;
-    private Set<User> recipeLovers = new HashSet<>();
+    private Set<FavouriteRecipe> recipeLovers = new HashSet<>();
 }
