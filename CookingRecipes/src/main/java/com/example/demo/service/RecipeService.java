@@ -18,12 +18,12 @@ public class RecipeService {
         this.recipeRepository = recipeRepository;
     }
 
-    public List<Recipe> getAllRecipes(){
+    public List<Recipe> getAllRecipes() {
         return recipeRepository.findAll();
     }
 
     public Long createRecipe(Recipe recipe) {
-       return recipeRepository.save(recipe).getId();
+        return recipeRepository.save(recipe).getId();
     }
 
     public Recipe updateRecipe(Long id, Recipe recipe) {
@@ -40,7 +40,7 @@ public class RecipeService {
 
             recipeRepository.save(recipeToEdit);
         } else {
-           recipeRepository.save(recipe);
+            recipeRepository.save(recipe);
         }
         return recipe;
     }

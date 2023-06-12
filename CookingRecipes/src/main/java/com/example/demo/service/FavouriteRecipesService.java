@@ -10,9 +10,7 @@ import com.example.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 
 @Service
@@ -31,7 +29,7 @@ public class FavouriteRecipesService {
     public Long addRecipeAsFavourite(Long recipeId, Long userId) {
         Recipe recipe = new Recipe();
         Optional<Recipe> recipeOptional = recipeRepository.findById(recipeId);
-        if(recipeOptional.isPresent()){
+        if (recipeOptional.isPresent()) {
             recipe = recipeOptional.get();
         }
         User user = new User();
@@ -45,23 +43,14 @@ public class FavouriteRecipesService {
         return favoriteRecipesRepository.save(favouriteRecipe).getId();
     }
 
-
-
-    public List<Recipe> showAllFavouriteRecipesByUser(Long userId) {
-        Optional<User> userOptional = userRepository.findById(userId);
-
-        User user = new User();
-        if(userOptional.isPresent()){
-            user = userOptional.get();
+    public List<Long> showAllFavouriteRecipesByUser(Long userId) {
+        Set<Long> recipesId = new HashSet<>();
+        for(FavouriteRecipes favouriteRecipes : favoriteRecipesRepository.findAll()){
+            if(favouriteRecipes.getUser().getId().equals(userId)){
+                recipesId.add(favouriteRecipes.getRecipe().getId());
+            }
         }
-
-        List<Recipe> recipes = new ArrayList<>();
-        for(FavouriteRecipes favouriteRecipe : user.getFavourites()){
-            recipes.add(favouriteRecipe.getRecipe());
-        }
-        return recipes;
+        return recipesId.stream().toList();
     }
-
-
 }
 
