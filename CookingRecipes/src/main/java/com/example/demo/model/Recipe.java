@@ -43,7 +43,6 @@ public class Recipe {
     @JoinColumn(name = "owner_id")
     private User owner;
 
-    //@ManyToMany(mappedBy = "favourites")
     @OneToMany(mappedBy = "recipe")
     private Set<FavouriteRecipes> recipeLovers = new HashSet<>();
 }
