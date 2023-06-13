@@ -1,6 +1,5 @@
 package com.example.demo.controller;
 
-
 import com.example.demo.dto.RateRecipeDto;
 import com.example.demo.service.RecipeRateService;
 import org.springframework.web.bind.annotation.PostMapping;
