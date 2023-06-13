@@ -6,16 +6,15 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity(name = "posted_comments")
+@Entity (name = "favourite_recipes")
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class PostedComments {
+public class FavouriteRecipe {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "app_user")
     private User user;
@@ -23,7 +22,4 @@ public class PostedComments {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "recipe")
     private Recipe recipe;
-
-    @Column(name = "comment")
-    private String comment;
 }

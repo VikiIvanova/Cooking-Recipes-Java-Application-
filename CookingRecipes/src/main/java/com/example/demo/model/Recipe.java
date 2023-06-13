@@ -44,6 +44,6 @@ public class Recipe {
     private User owner;
 
     @OneToMany(mappedBy = "recipe")
-    private Set<FavouriteRecipes> recipeLovers = new HashSet<>();
+    private Set<FavouriteRecipe> recipeLovers = new HashSet<>();
 }
 

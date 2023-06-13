@@ -1,9 +1,9 @@
 package com.example.demo.service;
 
-import com.example.demo.model.PostedComments;
+import com.example.demo.model.Comment;
 import com.example.demo.model.Recipe;
 import com.example.demo.model.User;
-import com.example.demo.repository.PostedCommentsRepository;
+import com.example.demo.repository.CommentRepository;
 import com.example.demo.repository.RecipeRepository;
 import com.example.demo.repository.UserRepository;
 import org.springframework.stereotype.Service;
@@ -11,13 +11,13 @@ import org.springframework.stereotype.Service;
 import java.util.*;
 
 @Service
-public class PostedCommentsService {
-    private final PostedCommentsRepository postedCommentsRepository;
+public class CommentService {
+    private final CommentRepository postedCommentsRepository;
     private final RecipeRepository recipeRepository;
     private final UserRepository userRepository;
 
 
-    public PostedCommentsService(PostedCommentsRepository postedCommentsRepository, RecipeRepository recipeRepository, UserRepository userRepository) {
+    public CommentService(CommentRepository postedCommentsRepository, RecipeRepository recipeRepository, UserRepository userRepository) {
         this.postedCommentsRepository = postedCommentsRepository;
         this.recipeRepository = recipeRepository;
         this.userRepository = userRepository;
@@ -34,7 +34,7 @@ public class PostedCommentsService {
         if (userOptional.isPresent()) {
             user = userOptional.get();
         }
-        PostedComments postedComment = new PostedComments();
+        Comment postedComment = new Comment();
         postedComment.setUser(user);
         postedComment.setRecipe(recipe);
         postedComment.setComment(comment);
@@ -43,7 +43,7 @@ public class PostedCommentsService {
 
     public List<String> getAllCommentsToRecipe(Long recipeId){
         List<String> comments = new ArrayList<>();
-        for(PostedComments c : postedCommentsRepository.findAll()){
+        for(Comment c : postedCommentsRepository.findAll()){
             if(c.getRecipe().getId().equals(recipeId)){
                 comments.add(c.getComment());
             }

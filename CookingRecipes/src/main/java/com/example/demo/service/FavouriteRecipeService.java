@@ -1,10 +1,10 @@
 package com.example.demo.service;
 
 
-import com.example.demo.model.FavouriteRecipes;
+import com.example.demo.model.FavouriteRecipe;
 import com.example.demo.model.Recipe;
 import com.example.demo.model.User;
-import com.example.demo.repository.FavoriteRecipesRepository;
+import com.example.demo.repository.FavoriteRecipeRepository;
 import com.example.demo.repository.RecipeRepository;
 import com.example.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,13 +14,13 @@ import java.util.*;
 
 
 @Service
-public class FavouriteRecipesService {
-    private final FavoriteRecipesRepository favoriteRecipesRepository;
+public class FavouriteRecipeService {
+    private final FavoriteRecipeRepository favoriteRecipesRepository;
     private final UserRepository userRepository;
     private final RecipeRepository recipeRepository;
 
     @Autowired
-    FavouriteRecipesService(FavoriteRecipesRepository favoriteRecipesRepository, UserRepository userRepository, RecipeRepository recipeRepository) {
+    FavouriteRecipeService(FavoriteRecipeRepository favoriteRecipesRepository, UserRepository userRepository, RecipeRepository recipeRepository) {
         this.favoriteRecipesRepository = favoriteRecipesRepository;
         this.userRepository = userRepository;
         this.recipeRepository = recipeRepository;
@@ -37,7 +37,7 @@ public class FavouriteRecipesService {
         if (userOptional.isPresent()) {
             user = userOptional.get();
         }
-        FavouriteRecipes favouriteRecipe = new FavouriteRecipes();
+        FavouriteRecipe favouriteRecipe = new FavouriteRecipe();
         favouriteRecipe.setUser(user);
         favouriteRecipe.setRecipe(recipe);
         return favoriteRecipesRepository.save(favouriteRecipe).getId();
@@ -45,7 +45,7 @@ public class FavouriteRecipesService {
 
     public List<Long> showAllFavouriteRecipesByUser(Long userId) {
         Set<Long> recipesId = new HashSet<>();
-        for(FavouriteRecipes favouriteRecipes : favoriteRecipesRepository.findAll()){
+        for(FavouriteRecipe favouriteRecipes : favoriteRecipesRepository.findAll()){
             if(favouriteRecipes.getUser().getId().equals(userId)){
                 recipesId.add(favouriteRecipes.getRecipe().getId());
             }

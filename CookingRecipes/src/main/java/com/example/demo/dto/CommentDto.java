@@ -9,7 +9,9 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class AddRecipeAsFavouriteDto {
-    private Long recipeId;
+public class CommentDto {
     private Long userId;
+    private Long recipeId;
+    private String comment;
+
 }

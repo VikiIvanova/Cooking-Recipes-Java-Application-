@@ -1,22 +1,22 @@
 package com.example.demo.controller;
 
-import com.example.demo.dto.PostCommentDto;
-import com.example.demo.service.PostedCommentsService;
+import com.example.demo.dto.CommentDto;
+import com.example.demo.service.CommentService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/postedcomments")
-public class PostedCommentController {
-    private final PostedCommentsService postedCommentsService;
+public class CommentController {
+    private final CommentService postedCommentsService;
 
-    public PostedCommentController(PostedCommentsService postedCommentsService) {
+    public CommentController(CommentService postedCommentsService) {
         this.postedCommentsService = postedCommentsService;
     }
 
     @PostMapping("/comment")
-    public Long addCommentToRecipe(@RequestBody PostCommentDto postCommentDto) {
+    public Long addCommentToRecipe(@RequestBody CommentDto postCommentDto) {
         return postedCommentsService.postComment(postCommentDto.getRecipeId(),
                 postCommentDto.getUserId(), postCommentDto.getComment());
     }
