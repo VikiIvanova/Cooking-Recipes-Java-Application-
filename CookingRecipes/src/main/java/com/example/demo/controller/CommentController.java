@@ -22,7 +22,7 @@ public class CommentController {
     }
 
     @GetMapping("/allcomments/{recipeId}")
-    public List<String> allPostedComments(@PathVariable Long recipeId) {
+    public List<String> allComments(@PathVariable Long recipeId) {
         return postedCommentsService.getAllCommentsToRecipe(recipeId);
     }
 
