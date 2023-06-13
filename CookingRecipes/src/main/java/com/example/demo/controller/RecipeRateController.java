@@ -17,7 +17,7 @@ public class RecipeRateController {
     }
 
     @PostMapping("/addrate")
-    public Long addRecipeToFavourites(@RequestBody RateRecipeDto recipeDto) {
+    public Long addRateToRecipe(@RequestBody RateRecipeDto recipeDto) {
         return recipeRateService.addRecipeRate(recipeDto.getRecipeId(), recipeDto.getUserId(), recipeDto.getRate());
     }
 }

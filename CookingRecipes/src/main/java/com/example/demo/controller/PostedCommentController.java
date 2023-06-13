@@ -15,9 +15,10 @@ public class PostedCommentController {
         this.postedCommentsService = postedCommentsService;
     }
 
-    @PostMapping("/postcomment")
-    public Long addRecipeToFavourites(@RequestBody PostCommentDto postCommentDto) {
-        return postedCommentsService.postComment(postCommentDto.getRecipeId(), postCommentDto.getUserId(), postCommentDto.getComment());
+    @PostMapping("/comment")
+    public Long addCommentToRecipe(@RequestBody PostCommentDto postCommentDto) {
+        return postedCommentsService.postComment(postCommentDto.getRecipeId(),
+                postCommentDto.getUserId(), postCommentDto.getComment());
     }
 
     @GetMapping("/allcomments/{recipeId}")
