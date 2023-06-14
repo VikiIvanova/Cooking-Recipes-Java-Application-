@@ -2,7 +2,6 @@ package com.example.demo.mapper;
 
 import com.example.demo.dto.CreateRecipeDto;
 import com.example.demo.dto.ProductDto;
-import com.example.demo.dto.RecipeDto;
 import com.example.demo.model.Product;
 import com.example.demo.model.Recipe;
 import org.springframework.stereotype.Component;
@@ -11,38 +10,35 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Component
-public class RecipeMapper {
-    public RecipeDto toDto(Recipe entity) {
+public class CreateRecipeMapper {
+
+    public CreateRecipeDto toDto(Recipe entity) {
         Set<ProductDto> products = entity.getProducts().stream()
                 .map(this::toProductDto)
                 .collect(Collectors.toSet());
 
-        return RecipeDto.builder()
-                .id(entity.getId())
+        return CreateRecipeDto.builder()
                 .name(entity.getName())
                 .products(products)
                 .category(entity.getCategory())
                 .description(entity.getDescription())
                 .rate(entity.getRate())
                 .owner(entity.getOwner())
-                .recipeLovers(entity.getRecipeLovers())
                 .build();
     }
 
-    public Recipe toEntity(RecipeDto dto) {
+    public Recipe toEntity(CreateRecipeDto dto) {
         Set<Product> products = dto.getProducts().stream()
                 .map(this::toProductEntity)
                 .collect(Collectors.toSet());
 
         return Recipe.builder()
-                .id(dto.getId())
                 .name(dto.getName())
                 .products(products)
                 .category(dto.getCategory())
                 .description(dto.getDescription())
                 .rate(dto.getRate())
                 .owner(dto.getOwner())
-                .recipeLovers(dto.getRecipeLovers())
                 .build();
     }
 
@@ -61,4 +57,6 @@ public class RecipeMapper {
                 .quantity(productDto.getQuantity())
                 .build();
     }
+
+
 }
