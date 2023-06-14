@@ -1,6 +1,7 @@
 package com.example.demo.mapper;
 
 import com.example.demo.dto.CreateUserDto;
+import com.example.demo.dto.UpdateUserDto;
 import com.example.demo.dto.UserDto;
 import com.example.demo.model.User;
 import org.springframework.stereotype.Component;
@@ -16,7 +17,7 @@ public class UserMapper {
                 .build();
     }
 
-    private User toUserEntity(UserDto userDto) {
+    private User toUEntity(UserDto userDto) {
         return User.builder()
                 .username(userDto.getUsername())
                 .email(userDto.getEmail())
@@ -24,7 +25,7 @@ public class UserMapper {
                 .build();
     }
 
-    public CreateUserDto toDto(User entity){
+    public CreateUserDto toCreateUserDto(User entity){
         return CreateUserDto.builder()
                 .username(entity.getUsername())
                 .email(entity.getEmail())
@@ -37,6 +38,22 @@ public class UserMapper {
                 .username(dto.getUsername())
                 .password(dto.getPassword())
                 .email(dto.getEmail())
+                .build();
+    }
+    public UpdateUserDto toUpdateUserDto(User entity){
+        return UpdateUserDto.builder()
+                .username(entity.getUsername())
+                .email(entity.getEmail())
+                .password(entity.getPassword())
+                .build();
+    }
+
+    public User toEntity(UpdateUserDto dto) {
+        return User.builder()
+                .username(dto.getUsername())
+                .password(dto.getPassword())
+                .email(dto.getEmail())
+                .favourites(dto.getFavourites())
                 .build();
     }
 

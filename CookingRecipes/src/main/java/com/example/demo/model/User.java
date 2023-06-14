@@ -30,9 +30,6 @@ public class User {
     @OneToMany(mappedBy = "owner")
     private Set<Recipe> recipes = new HashSet<>();
 
-    @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-    @JoinTable(name = "favourite_recipes",
-            joinColumns = @JoinColumn(name = "recipe_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id"))
-    private Set<Recipe> favourites = new HashSet<>();
+    @OneToMany(mappedBy = "user")
+    private Set<FavouriteRecipe> favourites = new HashSet<>();
 }

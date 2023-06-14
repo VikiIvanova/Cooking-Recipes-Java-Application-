@@ -1,12 +1,12 @@
 package com.example.demo.dto;
 
 import com.example.demo.model.FavouriteRecipe;
-import com.example.demo.model.Recipe;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.Email;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,11 +14,10 @@ import java.util.Set;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserDto {
-    private Long id;
+public class UpdateUserDto {
     private String username;
-    private String email;
     private String password;
-    private Set<Recipe> recipes = new HashSet<>();
+    @Email(message = "Invalid email address!")
+    private String email;
     private Set<FavouriteRecipe> favourites = new HashSet<>();
 }
