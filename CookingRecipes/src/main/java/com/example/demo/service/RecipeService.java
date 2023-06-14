@@ -1,5 +1,7 @@
 package com.example.demo.service;
 
+import com.example.demo.dto.RecipeDto;
+import com.example.demo.enums.Category;
 import com.example.demo.mapper.RecipeMapper;
 import com.example.demo.model.Recipe;
 import com.example.demo.repository.RecipeRepository;
@@ -12,10 +14,12 @@ import java.util.Optional;
 @Service
 public class RecipeService {
     private final RecipeRepository recipeRepository;
+    private final RecipeMapper recipeMapper;
 
     @Autowired
     public RecipeService(RecipeRepository recipeRepository, RecipeMapper recipeMapper) {
         this.recipeRepository = recipeRepository;
+        this.recipeMapper = recipeMapper;
     }
 
     public List<Recipe> getAllRecipes() {
@@ -44,5 +48,24 @@ public class RecipeService {
         }
         return recipe;
     }
+
+    public void deleteRecipe(Long id) {
+        recipeRepository.deleteById(id);
+    }
+
+    public RecipeDto getRecipeById(Long id) {
+        Optional<Recipe> optionalRecipe = recipeRepository.findById(id);
+        if (optionalRecipe.isPresent()) {
+            Recipe recipe = optionalRecipe.get();
+            return recipeMapper.toDto(recipe);
+        } else {
+            return null;
+        }
+    }
+
+    public List<Recipe> searchRecipes(String name, Category category, String productName) {
+        return recipeRepository.searchRecipes(name, category, productName);
+    }
+
 
 }

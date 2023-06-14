@@ -1,6 +1,5 @@
 package com.example.demo.mapper;
 
-import com.example.demo.dto.CreateRecipeDto;
 import com.example.demo.dto.ProductDto;
 import com.example.demo.dto.RecipeDto;
 import com.example.demo.model.Product;
@@ -25,7 +24,6 @@ public class RecipeMapper {
                 .description(entity.getDescription())
                 .rate(entity.getRate())
                 .owner(entity.getOwner())
-                .recipeLovers(entity.getRecipeLovers())
                 .build();
     }
 
@@ -42,7 +40,6 @@ public class RecipeMapper {
                 .description(dto.getDescription())
                 .rate(dto.getRate())
                 .owner(dto.getOwner())
-                .recipeLovers(dto.getRecipeLovers())
                 .build();
     }
 
