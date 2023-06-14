@@ -1,0 +1,26 @@
+<div class="search-bar">
+  <input type="text" class="search-bar-input" placeholder="Име на рецепта" [(ngModel)]="name">
+  <input type="text" class="search-bar-input" placeholder="Име на продукт" [(ngModel)]="productName">
+  <select class="search-bar-select" [(ngModel)]="category">
+    <option value="">Всички категории</option>т
+    <option value="SALADS">Салати</option>
+    <option value="STARTERS">Предястия</option>
+    <option value="MEAT_DISHES">Ястия с месо</option>
+    <option value="MEATLESS_DISHES">Ястия без месо</option>
+    <option value=" DESSERTS">Десерти</option>
+  </select>
+  <button class="search-bar-button" (click)="search()">
+<!--    <span>Търси</span>-->
+    <mat-icon class="search-bar-icon">search</mat-icon>
+  </button>
+</div>
+
+<ul *ngIf="searchResults && searchResults.length > 0">
+  <li *ngFor="let recipe of searchResults">
+    <h3>{{ recipe.name }}</h3>
+    <p>Категория: {{ recipe.category }}</p>
+  </li>
+</ul>
+
+<p class="label-result" *ngIf="searchResults && searchResults.length === 0">No results found.</p>
+
