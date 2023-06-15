@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {RecipeModel} from "../interfaces/recipe.model";
+import {CreateRecipeModel} from "../interfaces/createRecipe.model";
 
 @Injectable({
   providedIn: 'root'
@@ -14,21 +15,21 @@ export class RecipeService {
     return this.http.get<RecipeModel[]>('/api/recipes/allrecipes');
   }
 
-  // createRecipe(recipeDto: CreateRecipeDto): Observable<number> {
-  //   return this.http.post<number>('/api/recipes/createrecipe', recipeDto);
-  // }
-  //
-  // updateRecipe(id: number, recipeDto: CreateRecipeDto): Observable<void> {
-  //   return this.http.put<void>(`/api/recipes/${id}`, recipeDto);
-  // }
+  createRecipe(createRecipeModel: CreateRecipeModel): Observable<number> {
+    return this.http.post<number>('/api/recipes/createrecipe', createRecipeModel);
+  }
 
-  // deleteRecipe(id: number): Observable<void> {
-  //   return this.http.delete<void>(`/api/recipes/${id}`);
-  // }
-  //
-  // getRecipeById(id: number): Observable<RecipeModel> {
-  //   return this.http.get<RecipeModel>(`/api/recipes/${id}`);
-  // }
+  updateRecipe(id: number, createRecipeModel: CreateRecipeModel): Observable<void> {
+    return this.http.put<void>(`/api/recipes/${id}`, createRecipeModel);
+  }
+
+  deleteRecipe(id: number): Observable<void> {
+    return this.http.delete<void>(`/api/recipes/${id}`);
+  }
+
+  getRecipeById(id: number): Observable<RecipeModel> {
+    return this.http.get<RecipeModel>(`/api/recipes/${id}`);
+  }
 
   searchRecipes(name?: string, category?: string, productName?: string): Observable<RecipeModel[]> {
     const params: any = {};
