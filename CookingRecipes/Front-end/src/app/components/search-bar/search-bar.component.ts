@@ -16,16 +16,12 @@ export class SearchBarComponent {
 
   constructor(private recipeService: RecipeService) { }
 
-  search(): void {
+  search(): any {
     if (this.name || this.category || this.productName) {
       this.recipeService.searchRecipes(this.name, this.category, this.productName)
-        .subscribe({
-          next: recipes => {
+        .subscribe(recipes =>
+        {
             this.searchResults = recipes;
-          },
-          error: error => {
-            console.error(error);
-          }
         });
     } else {
       console.log("Please provide search parameters");
