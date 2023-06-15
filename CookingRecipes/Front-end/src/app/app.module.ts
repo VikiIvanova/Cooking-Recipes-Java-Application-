@@ -11,8 +11,13 @@ import { LoginComponent } from './components/login/login.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import {HttpClientModule} from "@angular/common/http";
 import {RecipeService} from "./services/recipe.service";
-import { FormsModule } from '@angular/forms';
 import {MatIconModule} from "@angular/material/icon";
+import { RegisterPageComponent } from './components/register-page/register-page.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule} from '@angular/router';
+import { routes } from './app-routing.module';
+
+
 
 @NgModule({
   declarations: [
@@ -21,6 +26,7 @@ import {MatIconModule} from "@angular/material/icon";
     HeaderComponent,
     LoginComponent,
     SearchBarComponent,
+    RegisterPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,9 +34,12 @@ import {MatIconModule} from "@angular/material/icon";
     BrowserAnimationsModule,
     MaterialUIModule,
     HttpClientModule,
+    MatIconModule,
     FormsModule,
-    MatIconModule
+    ReactiveFormsModule,
+    RouterModule.forRoot(routes)
   ],
+  exports: [RouterModule],
   providers: [RecipeService],
   bootstrap: [AppComponent]
 })
