@@ -19,7 +19,6 @@ export class RegisterPageComponent implements OnInit {
   constructor(private router: Router, private userService: UserService) {}
 
   ngOnInit(): void {
-    // Initialization code here
   }
 
   register(data: any) {
@@ -35,7 +34,7 @@ export class RegisterPageComponent implements OnInit {
       };
 
       this.userService.createUser(createUserModel);
-      this.router.navigate(['login']);
+      this.router.navigate(['homePage']);
     }
   }
 }

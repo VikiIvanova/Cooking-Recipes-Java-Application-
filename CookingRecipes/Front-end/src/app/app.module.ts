@@ -14,10 +14,6 @@ import {RecipeService} from "./services/recipe.service";
 import {MatIconModule} from "@angular/material/icon";
 import { RegisterPageComponent } from './components/register-page/register-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterModule} from '@angular/router';
-import { routes } from './app-routing.module';
-
-
 
 @NgModule({
   declarations: [
@@ -37,9 +33,7 @@ import { routes } from './app-routing.module';
     MatIconModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(routes)
   ],
-  exports: [RouterModule],
   providers: [RecipeService],
   bootstrap: [AppComponent]
 })
