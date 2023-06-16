@@ -1,23 +1,23 @@
 .register-form{
   display: flex;
-  /*justify-content: center;*/
+  justify-content: center;
   align-items: center;
   height: 90vh;
 }
 
-a {
-  text-decoration: none;
-  color: cadetblue;
-  margin-bottom: 1rem;
-}
-
 mat-card {
-  width: 300px;
+  width: 450px;
+  background: #829460;
 }
 
 mat-card-title {
-  font-size: 1.5rem;
+  font-size: 3.0rem;
   text-align: center;
+  padding: 20px 0px;
+  font-family: 'Satisfy', cursive;
+  color: #dbe1d1;
+  /*color: #515d3c;*/
+  margin: 20px 0px;
 }
 
 mat-card-content {
@@ -27,18 +27,34 @@ mat-card-content {
 }
 
 mat-form-field {
+  font-size: 20px;
   width: 100%;
   margin-bottom: 1rem;
 }
 
+mat-error {
+  font-size: 20px;
+  color: #850000;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
 button[type="submit"] {
-  width: 100%;
-  background-color: cadetblue;
+  height: 7vh;
+  font-size: 25px;
+  width: 70%;
+  background-color: #515d3c;
   color: white;
 }
 
 button[type="submit"]:disabled {
   background-color: lightgray;
   cursor: not-allowed;
+}
+
+.button-div {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
 }
 
