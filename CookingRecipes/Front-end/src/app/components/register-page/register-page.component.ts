@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
-import { CreateUserModel } from '../../interfaces/createUser.model';
+import { CreateUserModel } from "../../interfaces/createUser.model";
 
 @Component({
   selector: 'app-register-page',
@@ -18,23 +18,17 @@ export class RegisterPageComponent implements OnInit {
 
   constructor(private router: Router, private userService: UserService) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
-  register(data: any) {
-    if (!this.registerForm.valid) {
+  register(formData: any) {
+    if (this.registerForm.invalid) {
       return;
     }
 
-    if (data) {
-      const createUserModel: CreateUserModel = {
-        username: data.username,
-        email: data.email,
-        password: data.password
-      };
+    const createUser = new CreateUserModel(formData.email, formData.username, formData.password);
 
-      this.userService.createUser(createUserModel);
+    this.userService.createUser(createUser).subscribe(() => {
       this.router.navigate(['homePage']);
-    }
+    });
   }
 }
