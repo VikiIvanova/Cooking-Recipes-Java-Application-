@@ -13,7 +13,6 @@ import { RecipeService } from './services/recipe.service';
 import { MatIconModule } from '@angular/material/icon';
 import { RegisterPageComponent } from './components/register-page/register-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-//import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -33,7 +32,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatIconModule,
     FormsModule,
     ReactiveFormsModule,
-    //MatSnackBarModule,
   ],
   providers: [RecipeService],
   bootstrap: [AppComponent],

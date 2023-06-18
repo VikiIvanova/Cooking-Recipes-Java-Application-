@@ -2,19 +2,22 @@
   <mat-card>
     <mat-card-title>Вход</mat-card-title>
     <mat-card-content>
+      <mat-error *ngIf="loginForm.errors?.['wrongCredentials']" class="wrong-credentials-error">
+        Грешен имейл или парола!
+      </mat-error>
       <form [formGroup]="loginForm" (ngSubmit)="login()">
         <mat-form-field>
           <input type="email" matInput placeholder="Имейл" formControlName="email">
           <mat-error *ngIf="this.loginForm.get('email')?.touched && this.loginForm.get('email')?.hasError('required')">
             Имейлът е задължителен!</mat-error>
           <mat-error *ngIf="this.loginForm.get('email')?.touched && this.loginForm.get('email')?.hasError('email')">
-           Имейлът трябва да бъде валиден!</mat-error>
+            Имейлът трябва да бъде валиден!</mat-error>
         </mat-form-field>
         <mat-form-field>
           <input type="password" matInput placeholder="Парола" formControlName="password">
           <mat-error
             *ngIf="this.loginForm.get('password')?.touched && this.loginForm.get('password')?.hasError('required')">
-           Паролата е задължителна!</mat-error>
+            Паролата е задължителна!</mat-error>
         </mat-form-field>
         <div class="button-div">
           <button type="login()" mat-button [disabled]="!loginForm.valid">Влез</button>
@@ -22,5 +25,4 @@
       </form>
     </mat-card-content>
   </mat-card>
-<!--  <mat-snack-bar></mat-snack-bar>-->
 </div>

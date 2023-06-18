@@ -3,7 +3,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { UserModel } from '../../interfaces/user.model';
-//import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -19,8 +18,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private service: UserService,
-    // private snackBar: MatSnackBar
+    private service: UserService
   ) {}
 
   login() {
@@ -41,14 +39,11 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['homePage']).then(() => {
           window.location.reload();
         });
-       }
-      // else {
-      //   this.snackBar.open('Грешен имейл или парола', 'Затвори', {
-      //     duration: 3000,
-      //     verticalPosition: 'top',
-      //     panelClass: 'error-snackbar'
-      //   });
-      // }
+      } else {
+        this.loginForm.setErrors({ wrongCredentials: true });
+        // this.loginForm.get('email')?.setValue(null);
+        // this.loginForm.get('password')?.setValue(null);
+      }
     });
   }
 

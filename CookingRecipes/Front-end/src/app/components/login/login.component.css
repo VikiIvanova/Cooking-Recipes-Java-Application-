@@ -57,3 +57,8 @@ button[type="login()"]:disabled {
   justify-content: center;
   margin-bottom: 40px;
 }
+
+.wrong-credentials-error {
+ margin-bottom: 10px;
+  font-size: 25px;
+}
