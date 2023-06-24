@@ -1,6 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { RecipeModel } from '../../interfaces/recipe.model';
-import { RecipeService } from '../../services/recipe.service';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { Category } from '../../interfaces/category';
 
 @Component({
@@ -8,30 +6,20 @@ import { Category } from '../../interfaces/category';
   templateUrl: './search-bar.component.html',
   styleUrls: ['./search-bar.component.css']
 })
-export class SearchBarComponent implements OnInit {
+export class SearchBarComponent {
   name: string | undefined;
   productName: string | undefined;
   category: Category | undefined;
 
-  searchResults: RecipeModel[] = [];
-
-  constructor(private recipeService: RecipeService) { }
-
-  ngOnInit(): void {
-    this.search();
-  }
+  @Output() searchEvent = new EventEmitter();
 
   search(): void {
-    if (this.name || this.category || this.productName) {
-      this.recipeService.searchRecipes(this.name, this.category, this.productName)
-        .subscribe(recipes => {
-          this.searchResults = recipes;
-        });
-    } else {
-      this.recipeService.getAllRecipes()
-        .subscribe(recipes => {
-          this.searchResults = recipes;
-        });
-    }
+    const searchParams = {
+      name: this.name,
+      productName: this.productName,
+      category: this.category
+    };
+
+    this.searchEvent.emit(searchParams);
   }
 }
