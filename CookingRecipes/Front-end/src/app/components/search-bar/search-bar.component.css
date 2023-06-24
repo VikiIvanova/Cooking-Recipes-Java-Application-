@@ -8,6 +8,8 @@
   display: flex;
   justify-content: center;
   margin-top: 40px;
+  font-size: 25px;
+  color: #5f6c47;
 }
 
 .search-bar-input,
@@ -46,3 +48,22 @@
 .search-bar-icon {
   font-size: 30px;
 }
+
+.show-recipes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 40px;
+}
+
+.recipe-card {
+  flex-basis: calc(33.33% - 20px);
+  max-width: 250px;
+  margin: 0 10px 20px;
+}
+
+.recipe-name {
+  color: #dbe1d1;
+  margin-bottom: 5px;
+}
+

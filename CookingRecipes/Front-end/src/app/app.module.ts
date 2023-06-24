@@ -13,6 +13,7 @@ import { RecipeService } from './services/recipe.service';
 import { MatIconModule } from '@angular/material/icon';
 import { RegisterPageComponent } from './components/register-page/register-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RecipeListComponent } from './components/recipes/recipe-list/recipe-list.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     LoginComponent,
     SearchBarComponent,
     RegisterPageComponent,
+    RecipeListComponent,
   ],
   imports: [
     BrowserModule,
