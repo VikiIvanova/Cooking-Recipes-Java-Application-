@@ -14,6 +14,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { RegisterPageComponent } from './components/register-page/register-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RecipeListComponent } from './components/recipes/recipe-list/recipe-list.component';
+import { RecipeDetailsComponent } from './components/recipes/recipe-details/recipe-details.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { RecipeListComponent } from './components/recipes/recipe-list/recipe-lis
     SearchBarComponent,
     RegisterPageComponent,
     RecipeListComponent,
+    RecipeDetailsComponent,
   ],
   imports: [
     BrowserModule,

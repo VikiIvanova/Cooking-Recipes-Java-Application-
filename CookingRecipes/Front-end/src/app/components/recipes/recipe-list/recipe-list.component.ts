@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { RecipeModel} from "../../../interfaces/recipe.model";
-import { RecipeService} from "../../../services/recipe.service";
-import { Category} from "../../../interfaces/category";
+import { RecipeModel } from "../../../interfaces/recipe.model";
+import { RecipeService } from "../../../services/recipe.service";
+import { Category } from "../../../interfaces/category";
 
 @Component({
   selector: 'app-recipe-list',
@@ -15,6 +15,10 @@ export class RecipeListComponent {
 
   ngOnInit(): void {
     this.fetchAllRecipes();
+  }
+
+  isLoggedIn(): boolean {
+    return !!localStorage.getItem('username');
   }
 
   fetchAllRecipes(): void {
@@ -33,7 +37,7 @@ export class RecipeListComponent {
           this.searchResults = recipes;
         });
     } else {
-      this.fetchAllRecipes()
+      this.fetchAllRecipes();
     }
   }
 }

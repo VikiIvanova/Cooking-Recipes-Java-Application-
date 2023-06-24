@@ -33,11 +33,11 @@ public class RecipeController {
     }
 
     @GetMapping("/allrecipes")
-    public List<CreateRecipeDto> getAllRecipes() {
+    public List<RecipeDto> getAllRecipes() {
         final List<Recipe> recipesList = recipeService.getAllRecipes();
 
         return recipesList.stream()
-                .map(createRecipeMapper::toDto)
+                .map(recipeMapper::toDto)
                 .collect(Collectors.toList());
     }
 
@@ -47,8 +47,8 @@ public class RecipeController {
     }
 
     @PutMapping("/{id}")
-    public void updateRecipe(@PathVariable("id") Long id, @RequestBody @Valid CreateRecipeDto recipeDto) {
-        recipeService.updateRecipe(id, createRecipeMapper.toEntity(recipeDto));
+    public void updateRecipe(@PathVariable("id") Long id, @RequestBody @Valid RecipeDto recipeDto) {
+        recipeService.updateRecipe(id, recipeMapper.toEntity(recipeDto));
     }
 
     @DeleteMapping("/{id}")
@@ -57,7 +57,7 @@ public class RecipeController {
     }
 
     @GetMapping("/{id}")
-    public RecipeDto getRecipeById(@PathVariable Long id) {
+    public RecipeDto getRecipeById(@PathVariable("id") Long id) {
         return recipeService.getRecipeById(id);
     }
 

@@ -7,8 +7,8 @@
       </mat-card-header>
       <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="recipeImage">
       <mat-card-actions>
-        <button mat-button>Разгледай</button>
-        <button mat-button>Добави в любими</button>
+        <button mat-button [routerLink]="['/details', recipe.id]">Разгледай</button>
+        <button mat-button *ngIf="isLoggedIn()">Добави в любими</button>
       </mat-card-actions>
     </mat-card>
   </div>
@@ -17,3 +17,4 @@
     <p>Няма намерени резултати!</p>
   </div>
 </div>
+
