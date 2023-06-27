@@ -33,7 +33,6 @@ import {MatChipsModule} from "@angular/material/chips";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {MatExpansionModule} from "@angular/material/expansion";
 
-
 @NgModule({
   declarations: [],
   imports: [
@@ -88,7 +87,8 @@ import {MatExpansionModule} from "@angular/material/expansion";
     MatChipsModule,
     MatTooltipModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatCardModule
   ],
 })
 export class MaterialUIModule { }
