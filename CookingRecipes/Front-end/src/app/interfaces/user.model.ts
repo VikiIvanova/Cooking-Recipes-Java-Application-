@@ -1,7 +1,7 @@
 import {RecipeModel} from "./recipe.model";
 
 export interface UserModel {
-  id: number;
+  id: string;
   username: string;
   email: string;
   password: string;

@@ -6,6 +6,7 @@
   background-color: #f2f2f2;
   color: #829460;
 }
+
 .left-side {
   display: flex;
   align-items: center;
@@ -32,6 +33,7 @@
   margin: 0;
   padding: 0;
   display: flex;
+  align-items: center; /* Add this line */
 }
 
 .navigation ul li {
@@ -41,7 +43,7 @@
 
 .navigation ul li a {
   text-decoration: none;
-  color: #829460 ;
+  color: #829460;
   font-size: 20px;
   cursor: pointer;
   padding: 10px;
@@ -49,12 +51,11 @@
 }
 
 .navigation ul li a:hover,
-.navigation ul li a.active
-{
+.navigation ul li a.active {
   border-radius: 10px;
   box-shadow: 5px 5px 10px grey;
   background-color: #829460;
-  color: #EEEEEE ;
+  color: #EEEEEE;
 }
 
 .navigation ul li a.active:hover {
@@ -62,10 +63,28 @@
   background-color: #f2f2f2;
   box-shadow: none;
   color: #829460;
-
 }
 
+.logout-button {
+  text-decoration: none;
+  border: none;
+  color: #829460;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 10px;
+  transition: all 0.1s ease-in-out;
+}
 
+.logout-button:hover {
+  border-radius: 10px;
+  box-shadow: 5px 5px 10px grey;
+  background-color: #829460;
+  color: #EEEEEE;
+}
 
-
-
+.navigation ul li p {
+  text-decoration: none;
+  color: #829460;
+  font-size: 20px;
+  margin: 10px 10px;
+}
