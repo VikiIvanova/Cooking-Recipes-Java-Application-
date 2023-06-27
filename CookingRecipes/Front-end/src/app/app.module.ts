@@ -15,6 +15,8 @@ import { RegisterPageComponent } from './components/register-page/register-page.
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RecipeListComponent } from './components/recipes/recipe-list/recipe-list.component';
 import { RecipeDetailsComponent } from './components/recipes/recipe-details/recipe-details.component';
+import { MeasurePipe} from "./interfaces/measure.pipe";
+
 
 @NgModule({
   declarations: [
@@ -26,6 +28,7 @@ import { RecipeDetailsComponent } from './components/recipes/recipe-details/reci
     RegisterPageComponent,
     RecipeListComponent,
     RecipeDetailsComponent,
+    MeasurePipe
   ],
   imports: [
     BrowserModule,

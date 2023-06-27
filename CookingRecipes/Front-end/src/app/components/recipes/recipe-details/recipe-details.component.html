@@ -1,20 +1,30 @@
 <div class="recipe-details">
   <mat-card class="recipe-details-card" *ngIf="recipeDetails">
-    <mat-card-title class="recipe-details-name">{{recipeDetails.name}}</mat-card-title>
+    <mat-card-title class="recipe-details-name">{{ recipeDetails.name }}</mat-card-title>
     <mat-card-content class="details-content">
-      <div>
-        <img mat-card-image class="details-image" src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-             alt="RecipeImage">
+      <div class="details-image">
+        <img mat-card-image class="image" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="RecipeImage">
       </div>
       <div class="details-products">
-        <!--        {{recipeDetails.productName}}-->
+        <p class="products-title">Необходими продукти</p>
+        <ul *ngFor="let product of recipeDetails.products">
+          <li>{{ product.name }} - {{ product.quantity }}{{ MeasureMap[product.measure] }}</li>
+        </ul>
       </div>
       <div class="details-description">
-        <p> Описание: {{ recipeDetails.description }} </p>
+        <p class="description-title">Описание</p>
+        <p>{{ recipeDetails.description }}</p>
+      </div>
+      <div class="details-comments">
+        <p class="details-comments-title">Коментари</p>
+        <ol>
+          <li *ngFor="let comment of recipeComments">{{ comment }}</li>
+        </ol>
+        <span></span>
       </div>
     </mat-card-content>
     <mat-card-actions>
-      <!--    <button mat-button></button>-->
+      <!-- Button actions -->
     </mat-card-actions>
   </mat-card>
 </div>

@@ -16,14 +16,40 @@
 
 .details-content {
   display: flex;
-  justify-content: flex-start;
+  flex-direction: column;
+  color:#515d3c;
+  font-family: Nunito serif;
+  font-size: 20px;
+
 }
 
 .details-image {
-  max-width: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.details-content p {
-  margin-left: 20px;
-  font-size: 25px;
+.image {
+  max-width: 350px;
+}
+
+.products-title,
+.description-title,
+.details-comments-title {
+  padding-bottom: 5px;
+  margin-top: 20px;
+  font-size: 28px;
+  color:#363e28;
+  font-family: 'Satisfy', cursive;
+}
+
+.details-products,
+.details-description,
+.details-comments {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.details-comments li {
+  padding-bottom: 10px;
 }

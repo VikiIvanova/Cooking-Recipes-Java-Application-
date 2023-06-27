@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {RecipeModel} from "../interfaces/recipe.model";
 import {CreateRecipeModel} from "../interfaces/createRecipe.model";
+import {CommentModel} from "../interfaces/comment.model";
 
 @Injectable({
   providedIn: 'root'
@@ -45,4 +46,7 @@ export class RecipeService {
     return this.http.get<RecipeModel[]>('/api/recipes/search', { params });
   }
 
+  getCommentsByRecipeId(id:number): Observable<CommentModel[]> {
+    return this.http.get<CommentModel[]>(`api/postedcomments/allcomments/${id}`);
+  }
 }

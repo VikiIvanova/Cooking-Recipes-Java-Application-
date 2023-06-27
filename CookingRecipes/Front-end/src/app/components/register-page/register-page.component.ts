@@ -28,7 +28,7 @@ export class RegisterPageComponent implements OnInit {
     const createUser = new CreateUserModel(formData.email, formData.username, formData.password);
 
     this.userService.createUser(createUser).subscribe(() => {
-      this.router.navigate(['homePage']);
+      this.router.navigate(['login']);
     });
   }
 }
