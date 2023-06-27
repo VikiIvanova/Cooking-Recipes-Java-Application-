@@ -1,6 +1,5 @@
 package com.example.demo.service;
 
-import com.example.demo.mapper.UserMapper;
 import com.example.demo.model.User;
 import com.example.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +13,7 @@ public class UserService {
     private final UserRepository userRepository;
 
     @Autowired
-    public UserService(UserRepository userRepository, UserMapper userMapper) {
+    public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
@@ -24,6 +23,16 @@ public class UserService {
 
     public List<User> getAllUsers() {
         return userRepository.findAll();
+    }
+
+    public User getUserById(Long userId) {
+        User user = new User();
+        for (User currUser : getAllUsers()) {
+            if (currUser.getId().equals(userId)) {
+                user = currUser;
+            }
+        }
+        return user;
     }
 
     public User updateUser(Long id, User user) {
@@ -36,6 +45,16 @@ public class UserService {
             userToEdit.setFavourites(user.getFavourites());
         } else {
             userRepository.save(user);
+        }
+        return user;
+    }
+
+    public User findUserByEmail(String email) {
+        User user = new User();
+        for (User currUser : getAllUsers()) {
+            if (currUser.getEmail().equals(email)) {
+                user = currUser;
+            }
         }
         return user;
     }

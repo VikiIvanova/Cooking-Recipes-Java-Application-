@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { UserModel } from '../../interfaces/user.model';
+import { LoginUserModel } from '../../interfaces/loginUser.model';
 
 @Component({
   selector: 'app-login',
@@ -26,25 +27,28 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    this.service.getAllUsers().subscribe((users: UserModel[]) => {
-      const matchedUser = users.find(
-        (user) =>
-          user.email === this.loginForm.controls['email'].value &&
-          user.password === this.loginForm.controls['password'].value
-      );
+    const loginUser = new LoginUserModel(
+      this.loginForm.controls['email'].value,
+      this.loginForm.controls['password'].value
+    );
 
-      if (matchedUser) {
-        localStorage.setItem('username', JSON.stringify({ username: matchedUser.username }));
-        localStorage.setItem('id', matchedUser.id);
-        this.router.navigate(['homePage']).then(() => {
-          window.location.reload();
-        });
-      } else {
-        this.loginForm.setErrors({ wrongCredentials: true });
-        // this.loginForm.get('email')?.setValue(null);
-        // this.loginForm.get('password')?.setValue(null);
+    this.service.loginUser(loginUser).subscribe(
+      (loginUserId) => {
+        if (loginUserId === -1) {
+          this.loginForm.setErrors({ wrongCredentials: true });
+        } else {
+          this.service.getUserById(loginUserId).subscribe(
+            (matchedUser) => {
+              localStorage.setItem('username', JSON.stringify({ username: matchedUser.username }));
+              localStorage.setItem('id', String(matchedUser.id));
+              this.router.navigate(['homePage']).then(() => {
+                window.location.reload();
+              });
+            }
+          );
+        }
       }
-    });
+    );
   }
 
   ngOnInit(): void {}
