@@ -43,4 +43,8 @@ public class UserController {
         return userMapper.toEntity(userDto);
     }
 
+    @GetMapping("/getId")
+    public Long getUserId(@RequestParam String username) {
+        return userService.getUserId(username);
+    }
 }

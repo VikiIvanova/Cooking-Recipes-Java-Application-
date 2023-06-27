@@ -16,6 +16,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RecipeListComponent } from './components/recipes/recipe-list/recipe-list.component';
 import { RecipeDetailsComponent } from './components/recipes/recipe-details/recipe-details.component';
 import { MeasurePipe} from "./interfaces/measure.pipe";
+import { CommentDialogComponent } from './components/comment-dialog/comment-dialog.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { MeasurePipe} from "./interfaces/measure.pipe";
     RegisterPageComponent,
     RecipeListComponent,
     RecipeDetailsComponent,
-    MeasurePipe
+    MeasurePipe,
+    CommentDialogComponent
   ],
   imports: [
     BrowserModule,

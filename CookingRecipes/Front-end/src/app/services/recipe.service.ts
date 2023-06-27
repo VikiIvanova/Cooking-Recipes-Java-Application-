@@ -4,6 +4,7 @@ import {Observable} from "rxjs";
 import {RecipeModel} from "../interfaces/recipe.model";
 import {CreateRecipeModel} from "../interfaces/createRecipe.model";
 import {CommentModel} from "../interfaces/comment.model";
+import {AddFavoriteRecipeModel} from "../interfaces/addFavoriteRecipeModel";
 
 @Injectable({
   providedIn: 'root'
@@ -48,5 +49,13 @@ export class RecipeService {
 
   getCommentsByRecipeId(id:number): Observable<CommentModel[]> {
     return this.http.get<CommentModel[]>(`api/postedcomments/allcomments/${id}`);
+  }
+
+  addCommentToRecipe(commentModel: CommentModel): Observable<number> {
+    return this.http.post<number>('/api/postedcomments/comment', commentModel);
+  }
+
+  addFavoriteRecipe(favoriteRecipeModel: AddFavoriteRecipeModel): Observable<number> {
+    return this.http.post<number>('/api/favouriterecipes/addrecipetofavourite', favoriteRecipeModel);
   }
 }

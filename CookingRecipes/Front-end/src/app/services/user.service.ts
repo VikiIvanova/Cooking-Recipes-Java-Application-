@@ -21,4 +21,9 @@ export class UserService {
   updateUser(id: number, createUserModel: CreateUserModel): Observable<void> {
     return this.http.put<void>(`/api/users/${id}`, createUserModel);
   }
+
+  getUserId(username: string): Observable<number> {
+    return this.http.get<number>(`/api/users/getId?username=${username}`);
+  }
+
 }

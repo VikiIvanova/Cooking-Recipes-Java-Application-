@@ -1,5 +1,8 @@
 <div class="recipe-details">
   <mat-card class="recipe-details-card" *ngIf="recipeDetails">
+    <button mat-icon-button color="warn" class="favorite-icon" (click)="addLovers()">
+      <mat-icon>favorite</mat-icon>
+    </button>
     <mat-card-title class="recipe-details-name">{{ recipeDetails.name }}</mat-card-title>
     <mat-card-content class="details-content">
       <div class="details-image">
@@ -16,15 +19,13 @@
         <p>{{ recipeDetails.description }}</p>
       </div>
       <div class="details-comments">
-        <p class="details-comments-title">Коментари</p>
+        <p class="details-comments-title">Коментари <button mat-raised-button (click)="openDialog()">
+          <mat-icon>add</mat-icon>
+        </button></p>
         <ol>
           <li *ngFor="let comment of recipeComments">{{ comment }}</li>
         </ol>
-        <span></span>
       </div>
     </mat-card-content>
-    <mat-card-actions>
-      <!-- Button actions -->
-    </mat-card-actions>
   </mat-card>
 </div>

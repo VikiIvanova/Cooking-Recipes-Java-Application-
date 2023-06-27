@@ -40,5 +40,10 @@ public class UserService {
         return user;
     }
 
+    public Long getUserId(String username) {
+        Optional<User> optionalUser = userRepository.findByUsername(username);
+        return optionalUser.map(User::getId).orElse(null);
+    }
+
 
 }

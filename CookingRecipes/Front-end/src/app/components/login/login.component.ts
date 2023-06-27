@@ -35,17 +35,19 @@ export class LoginComponent implements OnInit {
 
       if (matchedUser) {
         localStorage.setItem('username', JSON.stringify({ username: matchedUser.username }));
-        localStorage.setItem('id', matchedUser.id);
-        this.router.navigate(['homePage']).then(() => {
-          window.location.reload();
+        this.service.getUserId(matchedUser.username).subscribe((userId: number) => {
+          localStorage.setItem('id', userId.toString());
+          this.router.navigate(['homePage']).then(() => {
+            window.location.reload();
+          });
         });
       } else {
         this.loginForm.setErrors({ wrongCredentials: true });
-        // this.loginForm.get('email')?.setValue(null);
-        // this.loginForm.get('password')?.setValue(null);
       }
     });
   }
+
+
 
   ngOnInit(): void {}
 }
