@@ -1,0 +1,16 @@
+<h1 class="favorite-recipe-title">Моите любими рецепти</h1>
+<div class="favorite-recipes" *ngIf="favoriteRecipes && favoriteRecipes.length > 0">
+  <mat-card class="recipe-card" *ngFor="let recipe of favoriteRecipes">
+    <mat-card-header>
+      <mat-card-title class="recipe-name">{{ recipe.name }}</mat-card-title>
+    </mat-card-header>
+    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="recipeImage">
+    <mat-card-actions>
+      <button mat-button [routerLink]="['/details', recipe.id]">Разгледай</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+
+<div class="label-result" *ngIf="favoriteRecipes && favoriteRecipes.length === 0">
+  <p>Няма намерени резултати!</p>
+</div>
