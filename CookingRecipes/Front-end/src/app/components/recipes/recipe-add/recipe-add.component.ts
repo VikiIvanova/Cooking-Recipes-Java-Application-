@@ -28,15 +28,18 @@ export class RecipeAddComponent implements OnInit{
     if (this.selectedFile) {
       console.log(this.selectedFile);
       this.recipeService.uploadImage(this.selectedFile).subscribe(
-        () => {
-          console.log('Image uploaded successfully');
-        },
-        (error) => {
-          console.error('Error uploading image', error);
+        {
+          next: () => {
+            console.log('Image uploaded successfully');
+          },
+          error: (error) => {
+            console.error('Error uploading image', error);
+          }
         }
       );
     }
   }
+
 
   ngOnInit(): void {}
 

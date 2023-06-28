@@ -11,7 +11,7 @@
       <div class="details-products">
         <p class="products-title">Необходими продукти</p>
         <ul *ngFor="let product of recipeDetails.products">
-          <li>{{ product.name }} - {{ product.quantity }}{{ MeasureMap[product.measure] }}</li>
+          <li>{{ product.name }} - {{ product.quantity }} {{ MeasureMap[product.measure] }}</li>
         </ul>
       </div>
       <div class="details-description">

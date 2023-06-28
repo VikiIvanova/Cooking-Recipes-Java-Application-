@@ -1,11 +1,12 @@
 export enum Measure {
-  GRAM = 'гр',
-  MILLILITRES = 'мл',
-  COUNT = 'бр'
+  GRAM = 'GRAM',
+  MILLILITRES = 'MILLILITRES',
+  COUNT = 'COUNT'
 }
 export const MeasureMap: { [key in Measure]: string } = {
-  [Measure.GRAM]: 'гр',
-  [Measure.MILLILITRES]: 'мл',
-  [Measure.COUNT]: 'бр'
+  [Measure.GRAM]: 'гр.',
+  [Measure.MILLILITRES]: 'мл.',
+  [Measure.COUNT]: 'бр.'
 };
+
 

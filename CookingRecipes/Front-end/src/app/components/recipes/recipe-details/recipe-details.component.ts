@@ -9,7 +9,6 @@ import {MatDialog} from '@angular/material/dialog';
 import {AddFavoriteRecipeModel} from "../../../interfaces/addFavoriteRecipeModel";
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-
 @Component({
   selector: 'app-recipe-details',
   templateUrl: './recipe-details.component.html',
@@ -19,7 +18,6 @@ export class RecipeDetailsComponent implements OnInit {
   id!: number;
   recipeDetails?: RecipeModel;
   recipeComments?: CommentModel[];
-  public Measure = Measure;
   public MeasureMap = MeasureMap;
   public userId?: number;
 
@@ -28,15 +26,14 @@ export class RecipeDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     public dialog: MatDialog,
     private recipeService: RecipeService,
-    private snackBar: MatSnackBar
-  ) {
-  }
+    private snackBar: MatSnackBar) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
       this.id = +params['id'];
       this.service.getRecipeById(this.id).subscribe((details) => {
         this.recipeDetails = details;
+        console.log(this.recipeDetails?.products)
       });
       this.service.getCommentsByRecipeId(this.id).subscribe((comments) => {
         this.recipeComments = comments;

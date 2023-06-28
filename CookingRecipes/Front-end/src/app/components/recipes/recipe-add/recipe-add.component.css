@@ -1,0 +1,76 @@
+.add-recipe-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
+
+.card {
+  width: 450px;
+  background: #829460;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.add-recipe-title {
+  font-size: 40px;
+  text-align: center;
+  margin-bottom: 30px;
+  font-family: 'Satisfy', cursive;
+  color: #dbe1d1;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-field {
+  margin-bottom: 20px;
+  padding-right: 20px;
+}
+.form-field label {
+  font-size: 20px;
+  margin-bottom: 7px;
+  color: #363e28;
+  display: block;
+}
+
+input[type="text"],
+textarea,
+select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #dbe1d1;
+  font-size: 15px;
+}
+
+select {
+  width: 105%;
+}
+
+.error {
+  color: #850000;
+  margin-top: 5px;
+  font-size: 14px;
+}
+
+button[type="submit"] {
+  padding: 10px 20px;
+  background-color: #363e28;
+  font-size: 15px;
+  color: #dbe1d1;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #dbe1d1;
+  color: #363e28;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
