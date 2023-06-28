@@ -7,6 +7,8 @@ import {CommentModel} from '../../../interfaces/comment.model';
 import {CommentDialogComponent} from '../../comment-dialog/comment-dialog.component';
 import {MatDialog} from '@angular/material/dialog';
 import {AddFavoriteRecipeModel} from "../../../interfaces/addFavoriteRecipeModel";
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'app-recipe-details',
@@ -26,6 +28,7 @@ export class RecipeDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     public dialog: MatDialog,
     private recipeService: RecipeService,
+    private snackBar: MatSnackBar
   ) {
   }
 
@@ -69,14 +72,24 @@ export class RecipeDetailsComponent implements OnInit {
     });
   }
 
-  //трябва да се добави проверка дали рецептата не е вече в любими
   addLovers() {
     const favoriteRecipeModel: AddFavoriteRecipeModel = {
       recipeId: this.id,
       userId: this.userId!
     };
-    this.recipeService.addFavoriteRecipe(favoriteRecipeModel).subscribe(() => {
-      alert('Успешно добавихте рецептата в любими!');
+
+    this.recipeService.addFavoriteRecipe(favoriteRecipeModel).subscribe((result) => {
+      if (result === -1) {
+        this.snackBar.open('Рецептата вече е добавена към любими', 'Затвори', {
+          duration: 3000,
+        });
+      } else {
+        this.snackBar.open('Успешно добавихте рецептата в любими!', 'Затвори', {
+          duration: 3000,
+        });
+      }
     });
   }
+
+
 }

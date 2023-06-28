@@ -52,5 +52,9 @@ public class FavouriteRecipeService {
         }
         return recipesId.stream().toList();
     }
+
+    public boolean isRecipeInFavorites(Long recipeId, Long userId) {
+        return favoriteRecipesRepository.existsByRecipeIdAndUserId(recipeId, userId);
+    }
 }
 

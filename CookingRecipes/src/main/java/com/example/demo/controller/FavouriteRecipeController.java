@@ -16,13 +16,18 @@ public class FavouriteRecipeController {
         this.favouriteRecipesService = favouriteRecipesService;
     }
 
+
     @PostMapping("/addrecipetofavourite")
     public Long addRecipeToFavourites(@RequestBody AddFavouriteRecipeDto addRecipeAsFavouriteDto) {
-        return favouriteRecipesService.addRecipeAsFavourite(
-                addRecipeAsFavouriteDto.getRecipeId(),
-                addRecipeAsFavouriteDto.getUserId()
-        );
+        Long recipeId = addRecipeAsFavouriteDto.getRecipeId();
+        Long userId = addRecipeAsFavouriteDto.getUserId();
+
+        if (favouriteRecipesService.isRecipeInFavorites(recipeId, userId)) {
+            return -1L;
+        }
+        return favouriteRecipesService.addRecipeAsFavourite(recipeId, userId);
     }
+
 
     @GetMapping("/allfavouriterecipes/{userId}")
     public List<Long> allFavouriteRecipes(@PathVariable Long userId) {
