@@ -4,4 +4,5 @@ import com.example.demo.model.FavouriteRecipe;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface FavoriteRecipeRepository extends JpaRepository<FavouriteRecipe, Long> {
+    boolean existsByRecipeIdAndUserId(Long recipeId, Long userId);
 }

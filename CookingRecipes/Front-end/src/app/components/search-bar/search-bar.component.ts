@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
-import {RecipeModel} from "../../interfaces/recipe.model";
-import {RecipeService} from "../../services/recipe.service";
+import { Component, Output, EventEmitter } from '@angular/core';
+import { Category } from '../../interfaces/category';
 
 @Component({
   selector: 'app-search-bar',
@@ -9,23 +8,18 @@ import {RecipeService} from "../../services/recipe.service";
 })
 export class SearchBarComponent {
   name: string | undefined;
-  category: string | undefined;
   productName: string | undefined;
+  category: Category | undefined;
 
-  searchResults: RecipeModel[] = [];
+  @Output() searchEvent = new EventEmitter();
 
-  constructor(private recipeService: RecipeService) { }
+  search(): void {
+    const searchParams = {
+      name: this.name,
+      productName: this.productName,
+      category: this.category
+    };
 
-  search(): any {
-    if (this.name || this.category || this.productName) {
-      this.recipeService.searchRecipes(this.name, this.category, this.productName)
-        .subscribe(recipes =>
-        {
-            this.searchResults = recipes;
-        });
-    } else {
-      console.log("Please provide search parameters");
-    }
+    this.searchEvent.emit(searchParams);
   }
-
 }

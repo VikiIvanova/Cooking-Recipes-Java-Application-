@@ -35,21 +35,21 @@ export class LoginComponent implements OnInit {
     this.service.loginUser(loginUser).subscribe(
       (loginUserId) => {
         if (loginUserId === -1) {
-          this.loginForm.setErrors({ wrongCredentials: true });
+          this.loginForm.setErrors({wrongCredentials: true});
         } else {
           this.service.getUserById(loginUserId).subscribe(
             (matchedUser) => {
-              localStorage.setItem('username', JSON.stringify({ username: matchedUser.username }));
-              localStorage.setItem('id', String(matchedUser.id));
-              this.router.navigate(['homePage']).then(() => {
-                window.location.reload();
+              localStorage.setItem('username', JSON.stringify({username: matchedUser.username}));
+              this.service.getUserId(matchedUser.username).subscribe((userId: number) => {
+                localStorage.setItem('id', userId.toString());
+                this.router.navigate(['homePage']).then(() => {
+                  window.location.reload();
+                });
               });
-            }
-          );
-        }
-      }
-    );
-  }
 
+            });
+        }
+      });
+  }
   ngOnInit(): void {}
 }

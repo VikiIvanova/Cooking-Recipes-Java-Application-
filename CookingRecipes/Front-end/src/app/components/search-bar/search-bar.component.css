@@ -4,12 +4,6 @@
   margin-top: 50px;
 }
 
-.label-result {
-  display: flex;
-  justify-content: center;
-  margin-top: 40px;
-}
-
 .search-bar-input,
 .search-bar-select {
   font-size: 20px;
@@ -46,3 +40,4 @@
 .search-bar-icon {
   font-size: 30px;
 }
+

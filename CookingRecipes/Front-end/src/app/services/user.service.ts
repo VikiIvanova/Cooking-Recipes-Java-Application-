@@ -31,4 +31,9 @@ export class UserService {
   loginUser(loginUserModel: LoginUserModel): Observable<number> {
     return this.http.post<number>('/api/users/login', loginUserModel);
   }
+
+  getUserId(username: string): Observable<number> {
+    return this.http.get<number>(`/api/users/getId?username=${username}`);
+  }
+
 }

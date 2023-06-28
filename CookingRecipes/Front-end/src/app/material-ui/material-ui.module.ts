@@ -69,7 +69,7 @@ import {MatExpansionModule} from "@angular/material/expansion";
     MatSnackBarModule,
     MatTableModule,
     MatSortModule,
-    MatPaginatorModule
+    MatPaginatorModule,
   ],
   exports: [
     MatButtonModule,
@@ -88,7 +88,7 @@ import {MatExpansionModule} from "@angular/material/expansion";
     MatTooltipModule,
     MatTableModule,
     MatPaginatorModule,
-    MatCardModule
+    MatCardModule,
   ],
 })
 export class MaterialUIModule { }

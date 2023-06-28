@@ -13,6 +13,11 @@ import { RecipeService } from './services/recipe.service';
 import { MatIconModule } from '@angular/material/icon';
 import { RegisterPageComponent } from './components/register-page/register-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RecipeListComponent } from './components/recipes/recipe-list/recipe-list.component';
+import { RecipeDetailsComponent } from './components/recipes/recipe-details/recipe-details.component';
+import { MeasurePipe} from "./interfaces/measure.pipe";
+import { CommentDialogComponent } from './components/comment-dialog/comment-dialog.component';
+
 
 @NgModule({
   declarations: [
@@ -22,6 +27,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     LoginComponent,
     SearchBarComponent,
     RegisterPageComponent,
+    RecipeListComponent,
+    RecipeDetailsComponent,
+    MeasurePipe,
+    CommentDialogComponent
   ],
   imports: [
     BrowserModule,

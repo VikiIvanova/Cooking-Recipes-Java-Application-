@@ -65,4 +65,8 @@ public class UserController {
         }
         return toReturnId;
     }
+    @GetMapping("/getId")
+    public Long getUserId(@RequestParam String username) {
+        return userService.getUserId(username);
+    }
 }
