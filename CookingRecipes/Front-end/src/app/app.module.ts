@@ -17,6 +17,7 @@ import { RecipeListComponent } from './components/recipes/recipe-list/recipe-lis
 import { RecipeDetailsComponent } from './components/recipes/recipe-details/recipe-details.component';
 import { MeasurePipe} from "./interfaces/measure.pipe";
 import { CommentDialogComponent } from './components/comment-dialog/comment-dialog.component';
+import { RecipeAddComponent } from './components/recipes/recipe-add/recipe-add.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { CommentDialogComponent } from './components/comment-dialog/comment-dial
     RecipeListComponent,
     RecipeDetailsComponent,
     MeasurePipe,
-    CommentDialogComponent
+    CommentDialogComponent,
+    RecipeAddComponent
   ],
   imports: [
     BrowserModule,

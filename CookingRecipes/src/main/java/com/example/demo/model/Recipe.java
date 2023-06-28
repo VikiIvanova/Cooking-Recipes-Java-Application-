@@ -37,6 +37,9 @@ public class Recipe {
     private String description;
 
     @Column
+    private String imagePath;
+
+    @Column
     private Double rate;
 
     @ManyToOne

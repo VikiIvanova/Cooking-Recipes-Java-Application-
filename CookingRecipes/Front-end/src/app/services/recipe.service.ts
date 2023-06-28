@@ -58,4 +58,14 @@ export class RecipeService {
   addFavoriteRecipe(favoriteRecipeModel: AddFavoriteRecipeModel): Observable<number> {
     return this.http.post<number>('/api/favouriterecipes/addrecipetofavourite', favoriteRecipeModel);
   }
+
+  uploadImage(file: File) {
+    const formData = new FormData();
+    formData.append('file', file);
+
+    return this.http.post('/api/upload', formData);
+  }
+
+
+
 }

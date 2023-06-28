@@ -21,6 +21,7 @@ public class RecipeDto {
     private Set<ProductDto> products = new HashSet<>();
     private Category category;
     private String description;
+    private String imagePath;
     private Double rate;
     private User owner;
     private Set<User> recipeLovers = new HashSet<>();

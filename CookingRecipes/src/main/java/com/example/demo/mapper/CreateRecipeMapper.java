@@ -22,6 +22,7 @@ public class CreateRecipeMapper {
                 .products(products)
                 .category(entity.getCategory())
                 .description(entity.getDescription())
+                .imagePath(entity.getImagePath())
                 .rate(entity.getRate())
                 .owner(entity.getOwner())
                 .build();
@@ -37,6 +38,7 @@ public class CreateRecipeMapper {
                 .products(products)
                 .category(dto.getCategory())
                 .description(dto.getDescription())
+                .imagePath(dto.getImagePath())
                 .rate(dto.getRate())
                 .owner(dto.getOwner())
                 .build();
