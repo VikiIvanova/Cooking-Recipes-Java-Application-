@@ -58,4 +58,9 @@ export class RecipeService {
   addFavoriteRecipe(favoriteRecipeModel: AddFavoriteRecipeModel): Observable<number> {
     return this.http.post<number>('/api/favouriterecipes/addrecipetofavourite', favoriteRecipeModel);
   }
+
+  getAllFavoriteRecipes(userId: number): Observable<number[]> {
+    return this.http.get<number[]>(`/api/favouriterecipes/allfavouriterecipes/${userId}`);
+  }
+
 }
