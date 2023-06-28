@@ -4,6 +4,7 @@
       <mat-icon>favorite</mat-icon>
     </button>
     <mat-card-title class="recipe-details-name">{{ recipeDetails.name }}</mat-card-title>
+    <app-star-rating [(rating)]="recipeRating" (ratingChange)="onRatingSelected($event)"></app-star-rating>
     <mat-card-content class="details-content">
       <div class="details-image">
         <img mat-card-image class="image" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="RecipeImage">

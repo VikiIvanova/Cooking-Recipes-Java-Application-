@@ -21,7 +21,8 @@ export class RecipeDetailsComponent implements OnInit {
   recipeComments?: CommentModel[];
   public Measure = Measure;
   public MeasureMap = MeasureMap;
-  public userId?: number;
+  public userId!: number;
+  recipeRating!: number;
 
   constructor(
     private service: RecipeService,
@@ -94,6 +95,25 @@ export class RecipeDetailsComponent implements OnInit {
       }
     });
   }
+  //добави проверка ако рецептата е вече оценена да не се показва за оценка, а самата оценка
+  onRatingSelected(rating: number) {
+    this.recipeRating = rating;
 
+    const rateRecipeDto = {
+      recipeId: this.id,
+      userId: this.userId,
+      rate: this.recipeRating
+    };
 
+    this.recipeService.addRateToRecipe(rateRecipeDto)
+      .subscribe(() => {
+        this.snackBar.open('Успешно оценихте рецептата!', 'Затвори', {
+          duration: 3000,
+        });
+      }, error => {
+        this.snackBar.open('Рецептата вече е оценена от вас!', 'Затвори', {
+          duration: 3000,
+        });
+      });
+  }
 }
