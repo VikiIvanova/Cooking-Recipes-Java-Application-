@@ -49,6 +49,10 @@ export class RecipeDetailsComponent implements OnInit {
     }
   }
 
+  isLoggedIn(): boolean {
+    return !!localStorage.getItem('username');
+  }
+
   openDialog(): void {
     const dialogRef = this.dialog.open(CommentDialogComponent, {
       width: '450px',
