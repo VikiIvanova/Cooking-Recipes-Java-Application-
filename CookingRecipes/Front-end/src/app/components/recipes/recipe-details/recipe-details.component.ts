@@ -21,6 +21,8 @@ export class RecipeDetailsComponent implements OnInit {
   public MeasureMap = MeasureMap;
   public userId?: number;
 
+  imagePath?: string;
+
   constructor(
     private service: RecipeService,
     private route: ActivatedRoute,
@@ -33,10 +35,12 @@ export class RecipeDetailsComponent implements OnInit {
       this.id = +params['id'];
       this.service.getRecipeById(this.id).subscribe((details) => {
         this.recipeDetails = details;
-        console.log(this.recipeDetails?.products)
       });
       this.service.getCommentsByRecipeId(this.id).subscribe((comments) => {
         this.recipeComments = comments;
+      });
+      this.service.getImagePathByRecipeId(this.id).subscribe((imagePath) => {
+        this.imagePath = imagePath;
       });
     });
 
@@ -91,6 +95,4 @@ export class RecipeDetailsComponent implements OnInit {
       }
     });
   }
-
-
 }

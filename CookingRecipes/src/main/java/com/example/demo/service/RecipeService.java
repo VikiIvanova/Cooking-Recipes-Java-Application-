@@ -67,5 +67,13 @@ public class RecipeService {
         return recipeRepository.searchRecipes(name, category, productName);
     }
 
+    public Recipe getRecipeByID(Long id) {
+        Recipe recipe = new Recipe();
+        Optional<Recipe> optionalRecipe = recipeRepository.findById(id);
+        if (optionalRecipe.isPresent()) {
+            recipe = optionalRecipe.get();
+        }
+        return recipe;
+    }
 
 }

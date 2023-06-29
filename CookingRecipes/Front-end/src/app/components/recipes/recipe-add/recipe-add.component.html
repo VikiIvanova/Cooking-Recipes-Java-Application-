@@ -31,8 +31,35 @@
         </div>
         <div>
           <form (ngSubmit)="uploadImage()" enctype="multipart/form-data">
-            <input type="file" (change)="onFileSelected($event)" accept="image/*" />
+            <input type="file" (change)="onFileSelected($event)" accept="image/*"/>
             <button type="submit">Добави снимка</button>
+          </form>
+        </div>
+        <div>
+          <form class="products-form" [formGroup]="addRecipeForm">
+            <div formArrayName="products" *ngFor="let product of addRecipeForm.get('products')?.value; let i = index">
+              <div [formGroupName]="i">
+                <div>
+                  <label for="product-name">Име на продукт</label>
+                  <input type="text" id="product-name" class="product-name" placeholder="Име" formControlName="name">
+                </div>
+                <div>
+                  <label for="product-quantity">Количество</label>
+                  <input type="number" id="product-quantity" formControlName="quantity">
+                </div>
+                <div>
+                  <label for="product-measure">Мярка</label>
+                  <select id="product-measure" formControlName="measure">
+                    <option value="GRAMS">гр.</option>
+                    <option value="MILLILITRES">мл.</option>
+                    <option value="COUNT">бр.</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="button-div">
+              <button type="submit" (click)="addProduct()">Добави още един продукт</button>
+            </div>
           </form>
         </div>
         <div class="button-div">
@@ -42,3 +69,4 @@
     </div>
   </div>
 </div>
+

@@ -21,5 +21,5 @@ public class CreateRecipeDto {
     private String description;
     private String imagePath;
     private Double rate;
-    private User owner;
+    private Long ownerId;
 }

@@ -5,6 +5,7 @@ import {RecipeModel} from "../interfaces/recipe.model";
 import {CreateRecipeModel} from "../interfaces/createRecipe.model";
 import {CommentModel} from "../interfaces/comment.model";
 import {AddFavoriteRecipeModel} from "../interfaces/addFavoriteRecipeModel";
+import {CreateUserModel} from "../interfaces/createUser.model";
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +18,8 @@ export class RecipeService {
     return this.http.get<RecipeModel[]>('/api/recipes/allrecipes');
   }
 
-  createRecipe(createRecipeModel: CreateRecipeModel): Observable<number> {
-    return this.http.post<number>('/api/recipes/createrecipe', createRecipeModel);
+  addRecipe(createRecipeModel: CreateRecipeModel): Observable<number> {
+    return this.http.post<number>("/api/recipes/createrecipe", createRecipeModel);
   }
 
   updateRecipe(id: number, createRecipeModel: CreateRecipeModel): Observable<void> {
@@ -65,4 +66,13 @@ export class RecipeService {
 
     return this.http.post('/api/upload', formData);
   }
+
+  createUser(createUserModel: CreateUserModel): Observable<number> {
+    return this.http.post<number>('/api/users/createuser', createUserModel);
+  }
+
+  getImagePathByRecipeId(id:number): Observable<string> {
+    return this.http.get<string>(`api/recipes/${id}/image`);
+  }
+
 }

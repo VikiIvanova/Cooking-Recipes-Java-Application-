@@ -74,3 +74,16 @@ button[type="submit"]:hover {
   border-radius: 5px;
   cursor: pointer;
 }
+
+.products-form {
+  border: 2px solid #000;
+ border-radius: 25px;
+}
+
+.products-field {
+  margin-left: 2px;
+}
+
+.product-name {
+  width: 30% !important;
+}
