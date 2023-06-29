@@ -5,6 +5,7 @@ import {RecipeModel} from "../interfaces/recipe.model";
 import {CreateRecipeModel} from "../interfaces/createRecipe.model";
 import {CommentModel} from "../interfaces/comment.model";
 import {AddFavoriteRecipeModel} from "../interfaces/addFavoriteRecipeModel";
+import {RateRecipeModel} from "../interfaces/rateRecipeModel";
 
 @Injectable({
   providedIn: 'root'
@@ -63,4 +64,11 @@ export class RecipeService {
     return this.http.get<number[]>(`/api/favouriterecipes/allfavouriterecipes/${userId}`);
   }
 
+  addRateToRecipe(rateRecipe: RateRecipeModel): Observable<number>{
+    return this.http.post<number>('/api/reciperate/addrate', rateRecipe);
+  }
+
+  getRate(recipeId: number): Observable<number>{
+    return this.http.get<number>(`/api/recipes/rate/${recipeId}`);
+  }
 }

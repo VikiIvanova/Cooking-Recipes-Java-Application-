@@ -73,4 +73,9 @@ public class RecipeController {
                 .collect(Collectors.toList());
     }
 
+    @GetMapping("/rate/{id}")
+    public Double getRateByRecipeId(@PathVariable Long id) {
+        return recipeService.getRateByRecipeId(id);
+    }
+
 }

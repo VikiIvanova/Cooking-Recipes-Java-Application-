@@ -21,10 +21,11 @@ export class RecipeDetailsComponent implements OnInit {
   recipeComments?: CommentModel[];
   public Measure = Measure;
   public MeasureMap = MeasureMap;
-  public userId?: number;
+  public userId!: number;
+  recipeRating!: number;
+  ratingSoFar!: number;
 
   constructor(
-    private service: RecipeService,
     private route: ActivatedRoute,
     public dialog: MatDialog,
     private recipeService: RecipeService,
@@ -35,10 +36,10 @@ export class RecipeDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
       this.id = +params['id'];
-      this.service.getRecipeById(this.id).subscribe((details) => {
+      this.recipeService.getRecipeById(this.id).subscribe((details) => {
         this.recipeDetails = details;
       });
-      this.service.getCommentsByRecipeId(this.id).subscribe((comments) => {
+      this.recipeService.getCommentsByRecipeId(this.id).subscribe((comments) => {
         this.recipeComments = comments;
       });
     });
@@ -47,6 +48,9 @@ export class RecipeDetailsComponent implements OnInit {
     if (userId) {
       this.userId = +userId;
     }
+
+    this.getRate();
+
   }
 
   isLoggedIn(): boolean {
@@ -68,7 +72,7 @@ export class RecipeDetailsComponent implements OnInit {
         };
 
         this.recipeService.addCommentToRecipe(commentModel).subscribe((commentId) => {
-          this.service.getCommentsByRecipeId(this.id).subscribe((comments) => {
+          this.recipeService.getCommentsByRecipeId(this.id).subscribe((comments) => {
             this.recipeComments = comments;
           });
         });
@@ -94,6 +98,30 @@ export class RecipeDetailsComponent implements OnInit {
       }
     });
   }
+  onRatingSelected(rating: number) {
+    this.recipeRating = rating;
 
+    const rateRecipeDto = {
+      recipeId: this.id,
+      userId: this.userId,
+      rate: this.recipeRating
+    };
 
+    this.recipeService.addRateToRecipe(rateRecipeDto)
+      .subscribe(() => {
+        this.snackBar.open('Успешно оценихте рецептата!', 'Затвори', {
+          duration: 3000,
+        });
+      }, error => {
+        this.snackBar.open('Рецептата вече е оценена от вас!', 'Затвори', {
+          duration: 3000,
+        });
+      });
+  }
+
+  getRate() {
+    this.recipeService.getRate(this.id).subscribe((result: number) => {
+      this.ratingSoFar = result;
+    });
+  }
 }

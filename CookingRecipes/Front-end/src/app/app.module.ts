@@ -18,6 +18,7 @@ import { RecipeDetailsComponent } from './components/recipes/recipe-details/reci
 import { MeasurePipe} from "./interfaces/measure.pipe";
 import { CommentDialogComponent } from './components/comment-dialog/comment-dialog.component';
 import { RecipeFavoriteComponent } from './components/recipes/recipe-favorite/recipe-favorite.component';
+import { StarRatingComponent } from './components/star-rating/star-rating.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { RecipeFavoriteComponent } from './components/recipes/recipe-favorite/re
     RecipeDetailsComponent,
     MeasurePipe,
     CommentDialogComponent,
-    RecipeFavoriteComponent
+    RecipeFavoriteComponent,
+    StarRatingComponent
   ],
   imports: [
     BrowserModule,

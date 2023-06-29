@@ -4,5 +4,5 @@ import com.example.demo.model.RecipeRate;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 
-public interface RecipeReteRepository extends JpaRepository<RecipeRate, Long> {
+public interface RecipeRateRepository extends JpaRepository<RecipeRate, Long> {
 }
