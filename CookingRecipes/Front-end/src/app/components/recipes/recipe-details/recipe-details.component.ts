@@ -23,9 +23,9 @@ export class RecipeDetailsComponent implements OnInit {
   public MeasureMap = MeasureMap;
   public userId!: number;
   recipeRating!: number;
+  ratingSoFar!: number;
 
   constructor(
-    private service: RecipeService,
     private route: ActivatedRoute,
     public dialog: MatDialog,
     private recipeService: RecipeService,
@@ -36,10 +36,10 @@ export class RecipeDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
       this.id = +params['id'];
-      this.service.getRecipeById(this.id).subscribe((details) => {
+      this.recipeService.getRecipeById(this.id).subscribe((details) => {
         this.recipeDetails = details;
       });
-      this.service.getCommentsByRecipeId(this.id).subscribe((comments) => {
+      this.recipeService.getCommentsByRecipeId(this.id).subscribe((comments) => {
         this.recipeComments = comments;
       });
     });
@@ -48,6 +48,9 @@ export class RecipeDetailsComponent implements OnInit {
     if (userId) {
       this.userId = +userId;
     }
+
+    this.getRate();
+
   }
 
   isLoggedIn(): boolean {
@@ -69,7 +72,7 @@ export class RecipeDetailsComponent implements OnInit {
         };
 
         this.recipeService.addCommentToRecipe(commentModel).subscribe((commentId) => {
-          this.service.getCommentsByRecipeId(this.id).subscribe((comments) => {
+          this.recipeService.getCommentsByRecipeId(this.id).subscribe((comments) => {
             this.recipeComments = comments;
           });
         });
@@ -95,7 +98,6 @@ export class RecipeDetailsComponent implements OnInit {
       }
     });
   }
-  //добави проверка ако рецептата е вече оценена да не се показва за оценка, а самата оценка
   onRatingSelected(rating: number) {
     this.recipeRating = rating;
 
@@ -115,5 +117,11 @@ export class RecipeDetailsComponent implements OnInit {
           duration: 3000,
         });
       });
+  }
+
+  getRate() {
+    this.recipeService.getRate(this.id).subscribe((result: number) => {
+      this.ratingSoFar = result;
+    });
   }
 }
