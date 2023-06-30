@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {RecipeModel} from '../../../interfaces/recipe.model';
 import {RecipeService} from '../../../services/recipe.service';
 import {ActivatedRoute, Params} from '@angular/router';
@@ -26,7 +26,6 @@ export class RecipeDetailsComponent implements OnInit {
   imagePath?: string;
 
   constructor(
-    private service: RecipeService,
     private route: ActivatedRoute,
     public dialog: MatDialog,
     private recipeService: RecipeService,
@@ -35,13 +34,13 @@ export class RecipeDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
       this.id = +params['id'];
-      this.service.getRecipeById(this.id).subscribe((details) => {
+      this.recipeService.getRecipeById(this.id).subscribe((details) => {
         this.recipeDetails = details;
       });
-      this.service.getCommentsByRecipeId(this.id).subscribe((comments) => {
+      this.recipeService.getCommentsByRecipeId(this.id).subscribe((comments) => {
         this.recipeComments = comments;
       });
-      this.service.getImagePathByRecipeId(this.id).subscribe((imageBlob) => {
+      this.recipeService.getImagePathByRecipeId(this.id).subscribe((imageBlob) => {
         this.imagePath = URL.createObjectURL(imageBlob);
       });
     });
@@ -73,8 +72,8 @@ export class RecipeDetailsComponent implements OnInit {
           comment: result,
         };
 
-        this.recipeService.addCommentToRecipe(commentModel).subscribe((commentId) => {
-          this.service.getCommentsByRecipeId(this.id).subscribe((comments) => {
+        this.recipeService.addCommentToRecipe(commentModel).subscribe(() => {
+          this.recipeService.getCommentsByRecipeId(this.id).subscribe((comments) => {
             this.recipeComments = comments;
           });
         });

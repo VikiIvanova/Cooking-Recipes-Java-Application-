@@ -16,7 +16,6 @@ public class FavouriteRecipeController {
         this.favouriteRecipesService = favouriteRecipesService;
     }
 
-
     @PostMapping("/addrecipetofavourite")
     public Long addRecipeToFavourites(@RequestBody AddFavouriteRecipeDto addRecipeAsFavouriteDto) {
         Long recipeId = addRecipeAsFavouriteDto.getRecipeId();

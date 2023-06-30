@@ -51,6 +51,7 @@ public class RecipeService {
 
     public void deleteRecipe(Long id) {
         recipeRepository.deleteById(id);
+
     }
 
     public RecipeDto getRecipeById(Long id) {

@@ -45,8 +45,8 @@ public class FavouriteRecipeService {
 
     public List<Long> showAllFavouriteRecipesByUser(Long userId) {
         Set<Long> recipesId = new HashSet<>();
-        for(FavouriteRecipe favouriteRecipes : favoriteRecipesRepository.findAll()){
-            if(favouriteRecipes.getUser().getId().equals(userId)){
+        for (FavouriteRecipe favouriteRecipes : favoriteRecipesRepository.findAll()) {
+            if (favouriteRecipes.getUser().getId().equals(userId)) {
                 recipesId.add(favouriteRecipes.getRecipe().getId());
             }
         }

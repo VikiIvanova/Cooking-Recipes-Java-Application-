@@ -9,7 +9,6 @@ public enum Measure {
 
     Measure(String name) {
         this.measureName = name;
-
     }
 
     public String getMeasureName(){

@@ -17,15 +17,7 @@ public class UserMapper {
                 .build();
     }
 
-    private User toUEntity(UserDto userDto) {
-        return User.builder()
-                .username(userDto.getUsername())
-                .email(userDto.getEmail())
-                .password(userDto.getPassword())
-                .build();
-    }
-
-    public CreateUserDto toCreateUserDto(User entity){
+    public CreateUserDto toCreateUserDto(User entity) {
         return CreateUserDto.builder()
                 .username(entity.getUsername())
                 .email(entity.getEmail())
@@ -40,13 +32,6 @@ public class UserMapper {
                 .email(dto.getEmail())
                 .build();
     }
-    public UpdateUserDto toUpdateUserDto(User entity){
-        return UpdateUserDto.builder()
-                .username(entity.getUsername())
-                .email(entity.getEmail())
-                .password(entity.getPassword())
-                .build();
-    }
 
     public User toEntity(UpdateUserDto dto) {
         return User.builder()
@@ -56,5 +41,4 @@ public class UserMapper {
                 .favourites(dto.getFavourites())
                 .build();
     }
-
 }

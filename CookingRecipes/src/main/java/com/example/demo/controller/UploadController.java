@@ -1,8 +1,10 @@
 package com.example.demo.controller;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
@@ -17,7 +19,7 @@ public class UploadController {
     public ResponseEntity<String> uploadImage(@RequestParam MultipartFile file) {
         try {
             String fileName = file.getOriginalFilename();
-             File newFile = new File(uploadDirectory + fileName);
+            File newFile = new File(uploadDirectory + fileName);
             file.transferTo(Path.of(newFile.getAbsolutePath()));
 
             return ResponseEntity.ok("Снимката е добавена успешно");

@@ -42,8 +42,8 @@ public class RecipeRateService {
 
         Double currRate = 0.0;
         int currRateCount = 0;
-        for(RecipeRate r : recipeReteRepository.findAll()){
-            if(r.getRecipe().getId().equals(recipeId)){
+        for (RecipeRate r : recipeReteRepository.findAll()) {
+            if (r.getRecipe().getId().equals(recipeId)) {
                 currRate += r.getRate();
                 currRateCount++;
             }

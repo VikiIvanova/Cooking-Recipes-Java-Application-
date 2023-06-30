@@ -41,10 +41,10 @@ public class CommentService {
         return postedCommentsRepository.save(postedComment).getId();
     }
 
-    public List<String> getAllCommentsToRecipe(Long recipeId){
+    public List<String> getAllCommentsToRecipe(Long recipeId) {
         List<String> comments = new ArrayList<>();
-        for(Comment c : postedCommentsRepository.findAll()){
-            if(c.getRecipe().getId().equals(recipeId)){
+        for (Comment c : postedCommentsRepository.findAll()) {
+            if (c.getRecipe().getId().equals(recipeId)) {
                 comments.add(c.getComment());
             }
         }
