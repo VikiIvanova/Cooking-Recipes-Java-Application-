@@ -37,10 +37,13 @@ public class Recipe {
     private String description;
 
     @Column
+    private String imagePath;
+
+    @Column
     private Double rate;
 
-    @ManyToOne
-    @JoinColumn(name = "owner_id")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "owner")
     private User owner;
 
     @OneToMany(mappedBy = "recipe")

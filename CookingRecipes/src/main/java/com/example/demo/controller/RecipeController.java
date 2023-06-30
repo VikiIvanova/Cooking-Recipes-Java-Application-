@@ -2,18 +2,20 @@ package com.example.demo.controller;
 
 import com.example.demo.dto.CreateRecipeDto;
 import com.example.demo.dto.RecipeDto;
-import com.example.demo.dto.ProductDto;
-import com.example.demo.dto.RecipeDto;
 import com.example.demo.enums.Category;
 import com.example.demo.mapper.CreateRecipeMapper;
 import com.example.demo.mapper.RecipeMapper;
 import com.example.demo.model.Recipe;
+import com.example.demo.model.User;
 import com.example.demo.service.RecipeService;
+import com.example.demo.service.UserService;
 import jakarta.validation.Valid;
-import org.springframework.data.crossstore.ChangeSetPersister;
-import org.springframework.http.ResponseEntity;
+import org.springframework.core.io.UrlResource;
 import org.springframework.web.bind.annotation.*;
-
+import org.springframework.core.io.Resource;
+import java.net.MalformedURLException;
+import java.io.File;
+import java.nio.file.Path;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -25,11 +27,13 @@ public class RecipeController {
     private final RecipeService recipeService;
     private final CreateRecipeMapper createRecipeMapper;
     private final RecipeMapper recipeMapper;
+    private final UserService userService;
 
-    public RecipeController(RecipeService recipeService, CreateRecipeMapper createRecipeMapper, RecipeMapper recipeMapper) {
+    public RecipeController(RecipeService recipeService, CreateRecipeMapper createRecipeMapper, RecipeMapper recipeMapper, UserService userService) {
         this.recipeService = recipeService;
         this.createRecipeMapper = createRecipeMapper;
         this.recipeMapper = recipeMapper;
+        this.userService = userService;
     }
 
     @GetMapping("/allrecipes")
@@ -43,7 +47,9 @@ public class RecipeController {
 
     @PostMapping("/createrecipe")
     public Long createRecipe(@RequestBody CreateRecipeDto recipeDto) {
-        return recipeService.createRecipe(createRecipeMapper.toEntity(recipeDto));
+        System.out.println(recipeDto);
+        User user = userService.getUserById(recipeDto.getOwnerId());
+        return recipeService.createRecipe(createRecipeMapper.toEntity(recipeDto, user));
     }
 
     @PutMapping("/{id}")
@@ -77,5 +83,14 @@ public class RecipeController {
     public Double getRateByRecipeId(@PathVariable Long id) {
         return recipeService.getRateByRecipeId(id);
     }
+
+    @GetMapping("/{id}/image")
+    public Resource getImage(@PathVariable Long id) throws MalformedURLException {
+        Recipe recipe = recipeService.getRecipeByID(id);
+        File file = new File(recipe.getImagePath());
+        Path path = Path.of(file.getAbsolutePath());
+        return new UrlResource(path.toUri());
+    }
+
 
 }

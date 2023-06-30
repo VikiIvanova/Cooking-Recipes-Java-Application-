@@ -1,7 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="061c8e52-8a80-45cf-b776-b4694fff4d1a" name="Changes" comment="" />
+    <list default="true" id="061c8e52-8a80-45cf-b776-b4694fff4d1a" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/CookingRecipes/Front-end/src/app/components/recipes/recipe-add/recipe-add.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/CookingRecipes/Front-end/src/app/components/recipes/recipe-add/recipe-add.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CookingRecipes/Front-end/src/app/components/recipes/recipe-add/recipe-add.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/CookingRecipes/Front-end/src/app/components/recipes/recipe-add/recipe-add.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CookingRecipes/Front-end/src/app/components/recipes/recipe-add/recipe-add.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/CookingRecipes/Front-end/src/app/components/recipes/recipe-add/recipe-add.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CookingRecipes/Front-end/src/app/components/recipes/recipe-details/recipe-details.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/CookingRecipes/Front-end/src/app/components/recipes/recipe-details/recipe-details.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CookingRecipes/Front-end/src/app/components/recipes/recipe-details/recipe-details.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/CookingRecipes/Front-end/src/app/components/recipes/recipe-details/recipe-details.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CookingRecipes/Front-end/src/app/components/recipes/recipe-list/recipe-list.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/CookingRecipes/Front-end/src/app/components/recipes/recipe-list/recipe-list.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CookingRecipes/Front-end/src/app/interfaces/createRecipe.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/CookingRecipes/Front-end/src/app/interfaces/createRecipe.model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CookingRecipes/Front-end/src/app/interfaces/product.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/CookingRecipes/Front-end/src/app/interfaces/product.model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CookingRecipes/Front-end/src/app/interfaces/recipe.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/CookingRecipes/Front-end/src/app/interfaces/recipe.model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CookingRecipes/Front-end/src/app/services/recipe.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/CookingRecipes/Front-end/src/app/services/recipe.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CookingRecipes/src/main/java/com/example/demo/controller/RecipeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/CookingRecipes/src/main/java/com/example/demo/controller/RecipeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CookingRecipes/src/main/java/com/example/demo/dto/CreateRecipeDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/CookingRecipes/src/main/java/com/example/demo/dto/CreateRecipeDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CookingRecipes/src/main/java/com/example/demo/mapper/CreateRecipeMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/CookingRecipes/src/main/java/com/example/demo/mapper/CreateRecipeMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CookingRecipes/src/main/java/com/example/demo/model/Recipe.java" beforeDir="false" afterPath="$PROJECT_DIR$/CookingRecipes/src/main/java/com/example/demo/model/Recipe.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CookingRecipes/src/main/java/com/example/demo/service/RecipeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/CookingRecipes/src/main/java/com/example/demo/service/RecipeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CookingRecipes/src/main/resources/savedImages/13681053_1015779168550603_487341633988466998_n.jpg" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -38,6 +55,7 @@
       <workItem from="1684339870061" duration="155000" />
       <workItem from="1684653517610" duration="3028000" />
       <workItem from="1684656838811" duration="23000" />
+      <workItem from="1688050523615" duration="71000" />
     </task>
     <servers />
   </component>

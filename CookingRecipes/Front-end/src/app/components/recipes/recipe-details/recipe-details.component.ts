@@ -9,7 +9,6 @@ import {MatDialog} from '@angular/material/dialog';
 import {AddFavoriteRecipeModel} from "../../../interfaces/addFavoriteRecipeModel";
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-
 @Component({
   selector: 'app-recipe-details',
   templateUrl: './recipe-details.component.html',
@@ -19,28 +18,31 @@ export class RecipeDetailsComponent implements OnInit {
   id!: number;
   recipeDetails?: RecipeModel;
   recipeComments?: CommentModel[];
-  public Measure = Measure;
   public MeasureMap = MeasureMap;
   public userId!: number;
   recipeRating!: number;
   ratingSoFar!: number;
 
+  imagePath?: string;
+
   constructor(
+    private service: RecipeService,
     private route: ActivatedRoute,
     public dialog: MatDialog,
     private recipeService: RecipeService,
-    private snackBar: MatSnackBar
-  ) {
-  }
+    private snackBar: MatSnackBar) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
       this.id = +params['id'];
-      this.recipeService.getRecipeById(this.id).subscribe((details) => {
+      this.service.getRecipeById(this.id).subscribe((details) => {
         this.recipeDetails = details;
       });
-      this.recipeService.getCommentsByRecipeId(this.id).subscribe((comments) => {
+      this.service.getCommentsByRecipeId(this.id).subscribe((comments) => {
         this.recipeComments = comments;
+      });
+      this.service.getImagePathByRecipeId(this.id).subscribe((imageBlob) => {
+        this.imagePath = URL.createObjectURL(imageBlob);
       });
     });
 
@@ -72,7 +74,7 @@ export class RecipeDetailsComponent implements OnInit {
         };
 
         this.recipeService.addCommentToRecipe(commentModel).subscribe((commentId) => {
-          this.recipeService.getCommentsByRecipeId(this.id).subscribe((comments) => {
+          this.service.getCommentsByRecipeId(this.id).subscribe((comments) => {
             this.recipeComments = comments;
           });
         });

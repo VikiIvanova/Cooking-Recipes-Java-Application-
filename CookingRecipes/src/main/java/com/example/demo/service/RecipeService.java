@@ -75,5 +75,13 @@ public class RecipeService {
         }
         return recipe.getRate();
     }
+    public Recipe getRecipeByID(Long id) {
+        Recipe recipe = new Recipe();
+        Optional<Recipe> optionalRecipe = recipeRepository.findById(id);
+        if (optionalRecipe.isPresent()) {
+            recipe = optionalRecipe.get();
+        }
+        return recipe;
+    }
 
 }

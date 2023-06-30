@@ -7,7 +7,7 @@ export interface RecipeModel {
   name: string;
   category: Category;
   products?: ProductModel[];
-  // image: any;
+  imagePath: string;
   description: string;
   comments?: CommentModel[];
 }

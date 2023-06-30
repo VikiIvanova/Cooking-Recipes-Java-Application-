@@ -15,10 +15,10 @@ import { RegisterPageComponent } from './components/register-page/register-page.
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RecipeListComponent } from './components/recipes/recipe-list/recipe-list.component';
 import { RecipeDetailsComponent } from './components/recipes/recipe-details/recipe-details.component';
-import { MeasurePipe} from "./interfaces/measure.pipe";
 import { CommentDialogComponent } from './components/comment-dialog/comment-dialog.component';
 import { RecipeFavoriteComponent } from './components/recipes/recipe-favorite/recipe-favorite.component';
 import { StarRatingComponent } from './components/star-rating/star-rating.component';
+import { RecipeAddComponent } from './components/recipes/recipe-add/recipe-add.component';
 
 
 @NgModule({
@@ -31,10 +31,10 @@ import { StarRatingComponent } from './components/star-rating/star-rating.compon
     RegisterPageComponent,
     RecipeListComponent,
     RecipeDetailsComponent,
-    MeasurePipe,
     CommentDialogComponent,
     RecipeFavoriteComponent,
-    StarRatingComponent
+    StarRatingComponent,
+    RecipeAddComponent
   ],
   imports: [
     BrowserModule,

@@ -4,6 +4,7 @@ import com.example.demo.dto.CreateRecipeDto;
 import com.example.demo.dto.ProductDto;
 import com.example.demo.model.Product;
 import com.example.demo.model.Recipe;
+import com.example.demo.model.User;
 import org.springframework.stereotype.Component;
 
 import java.util.Set;
@@ -22,12 +23,13 @@ public class CreateRecipeMapper {
                 .products(products)
                 .category(entity.getCategory())
                 .description(entity.getDescription())
+                .imagePath(entity.getImagePath())
                 .rate(entity.getRate())
-                .owner(entity.getOwner())
+                .ownerId(entity.getOwner().getId())
                 .build();
     }
 
-    public Recipe toEntity(CreateRecipeDto dto) {
+    public Recipe toEntity(CreateRecipeDto dto, User user) {
         Set<Product> products = dto.getProducts().stream()
                 .map(this::toProductEntity)
                 .collect(Collectors.toSet());
@@ -37,8 +39,9 @@ public class CreateRecipeMapper {
                 .products(products)
                 .category(dto.getCategory())
                 .description(dto.getDescription())
+                .imagePath("src/main/resources/savedImages/"+ dto.getImagePath())
                 .rate(dto.getRate())
-                .owner(dto.getOwner())
+                .owner(user)
                 .build();
     }
 

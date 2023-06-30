@@ -6,6 +6,7 @@ import {CreateRecipeModel} from "../interfaces/createRecipe.model";
 import {CommentModel} from "../interfaces/comment.model";
 import {AddFavoriteRecipeModel} from "../interfaces/addFavoriteRecipeModel";
 import {RateRecipeModel} from "../interfaces/rateRecipeModel";
+import {CreateUserModel} from "../interfaces/createUser.model";
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +19,8 @@ export class RecipeService {
     return this.http.get<RecipeModel[]>('/api/recipes/allrecipes');
   }
 
-  createRecipe(createRecipeModel: CreateRecipeModel): Observable<number> {
-    return this.http.post<number>('/api/recipes/createrecipe', createRecipeModel);
+  addRecipe(createRecipeModel: CreateRecipeModel): Observable<number> {
+    return this.http.post<number>("/api/recipes/createrecipe", createRecipeModel);
   }
 
   updateRecipe(id: number, createRecipeModel: CreateRecipeModel): Observable<void> {
@@ -71,4 +72,21 @@ export class RecipeService {
   getRate(recipeId: number): Observable<number>{
     return this.http.get<number>(`/api/recipes/rate/${recipeId}`);
   }
+
+  uploadImage(file: File) : Observable<any> {
+    const formData = new FormData();
+    formData.append('file', file);
+
+    return this.http.post('/api/upload', formData);
+  }
+
+  createUser(createUserModel: CreateUserModel): Observable<number> {
+    return this.http.post<number>('/api/users/createuser', createUserModel);
+  }
+
+  getImagePathByRecipeId(id: number): Observable<Blob> {
+    return this.http.get(`api/recipes/${id}/image`, { responseType: 'blob' });
+  }
+
+
 }

@@ -6,7 +6,7 @@
     <mat-card-title class="recipe-details-name">{{ recipeDetails.name }}</mat-card-title>
     <mat-card-content class="details-content">
       <div class="details-image">
-        <img mat-card-image class="image" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="RecipeImage">
+        <img mat-card-image class="image" src="{{imagePath}}" alt="RecipeImage">
       </div>
       <div class="rate">
         <span class="rate-title">Оценете рецептата: </span>
@@ -18,7 +18,7 @@
       <div class="details-products">
         <p class="products-title">Необходими продукти</p>
         <ul *ngFor="let product of recipeDetails.products">
-          <li>{{ product.name }} - {{ product.quantity }}{{ MeasureMap[product.measure] }}</li>
+          <li>{{ product.name }} - {{ product.quantity }} {{ MeasureMap[product.measure] }}</li>
         </ul>
       </div>
       <div class="details-description">
