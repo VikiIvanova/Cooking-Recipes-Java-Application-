@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators, FormArray } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RecipeService } from '../../../services/recipe.service';
 import { CreateRecipeModel } from '../../../interfaces/createRecipe.model';
@@ -80,7 +80,6 @@ export class RecipeAddComponent implements OnInit {
       rate: 0,
       ownerId: this.userId
     } as CreateRecipeModel;
-    console.log(createRecipe);
     this.recipeService.addRecipe(createRecipe).subscribe(() => {
       this.router.navigate(['homePage']);
     });

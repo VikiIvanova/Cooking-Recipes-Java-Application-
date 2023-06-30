@@ -88,5 +88,7 @@ export class RecipeService {
     return this.http.get(`api/recipes/${id}/image`, { responseType: 'blob' });
   }
 
-
+  getOwnerByRecipeId(id:number):Observable<number> {
+    return this.http.get<number>(`api/recipes/${id}/owner`);
+  }
 }

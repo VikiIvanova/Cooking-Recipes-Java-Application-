@@ -92,5 +92,9 @@ public class RecipeController {
         return new UrlResource(path.toUri());
     }
 
+    @GetMapping("/{id}/owner")
+    public Long getOwnerByRecipeId(@PathVariable Long id) {
+        return recipeService.getOwnerByRecipeId(id);
+    }
 
 }

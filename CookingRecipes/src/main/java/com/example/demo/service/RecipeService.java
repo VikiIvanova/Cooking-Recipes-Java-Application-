@@ -84,4 +84,12 @@ public class RecipeService {
         return recipe;
     }
 
+    public Long getOwnerByRecipeId(Long id) {
+        Optional<Recipe> optionalRecipe = recipeRepository.findById(id);
+        Recipe recipe = new Recipe();
+        if(optionalRecipe.isPresent()) {
+            recipe = optionalRecipe.get();
+        }
+        return recipe.getOwner().getId();
+    }
 }

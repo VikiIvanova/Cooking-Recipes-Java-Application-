@@ -1,8 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {RecipeModel} from '../../../interfaces/recipe.model';
 import {RecipeService} from '../../../services/recipe.service';
-import {ActivatedRoute, Params} from '@angular/router';
-import {Measure, MeasureMap} from '../../../interfaces/measure';
+import {ActivatedRoute, Params, Router} from '@angular/router';
+import {MeasureMap} from '../../../interfaces/measure';
 import {CommentModel} from '../../../interfaces/comment.model';
 import {CommentDialogComponent} from '../../comment-dialog/comment-dialog.component';
 import {MatDialog} from '@angular/material/dialog';
@@ -24,13 +24,15 @@ export class RecipeDetailsComponent implements OnInit {
   ratingSoFar!: number;
 
   imagePath?: string;
+  ownerId?: number;
 
   constructor(
     private service: RecipeService,
     private route: ActivatedRoute,
     public dialog: MatDialog,
     private recipeService: RecipeService,
-    private snackBar: MatSnackBar) {}
+    private snackBar: MatSnackBar,
+    private router: Router) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
@@ -52,7 +54,7 @@ export class RecipeDetailsComponent implements OnInit {
     }
 
     this.getRate();
-
+    this.getOwner();
   }
 
   isLoggedIn(): boolean {
@@ -126,4 +128,28 @@ export class RecipeDetailsComponent implements OnInit {
       this.ratingSoFar = result;
     });
   }
+
+  getOwner(){
+    this.recipeService.getOwnerByRecipeId(this.id).subscribe((result: number) => {
+      this.ownerId = result;
+    });
+  }
+
+  isOwner():boolean {
+    return this.ownerId === this.userId;
+  }
+
+  deleteRecipe() {
+    this.recipeService.deleteRecipe(this.id).subscribe(() => {
+      this.snackBar.open('Успешно изтрихте рецептата!', 'Затвори', {
+        duration: 3000,
+      });
+      this.router.navigate(['homePage'])
+    }, error => {
+      this.snackBar.open('Рецептата не може да бъде изтрита!', 'Затвори', {
+        duration: 3000,
+      });
+    });
+  }
+
 }
