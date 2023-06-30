@@ -1,0 +1,26 @@
+<header class="header">
+  <div class="left-side">
+    <div class="logo">
+      <img src="../../../assets/images/logo-CookingBook.png" alt="logo">
+    </div>
+    <div class="title">
+      <h1>Вкусотийко</h1>
+    </div>
+  </div>
+  <div class="right-side">
+    <nav class="navigation">
+      <ul>
+        <li *ngIf="isLoggedIn()"><p>Влезли сте като: {{ getUsername() }}</p></li>
+        <li><a class="active" [routerLink]="['/homePage']" routerLinkActive="active">Начало</a></li>
+        <li *ngIf="isLoggedIn()"><a [routerLink]="['/addRecipe']">Добави рецепта</a></li>
+        <li *ngIf="isLoggedIn()"><a [routerLink]="['/favoriteRecipes']">Любими рецепти</a></li>
+        <li *ngIf="!isLoggedIn()"><a [routerLink]="['/register']">Регистрация</a></li>
+        <li *ngIf="!isLoggedIn()"><a [routerLink]="['/login']">Вход</a></li>
+        <li *ngIf="isLoggedIn()">
+          <button type="button" (click)="logout()" class="logout-button">Изход</button>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+

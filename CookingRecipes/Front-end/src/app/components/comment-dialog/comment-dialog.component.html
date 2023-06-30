@@ -1,0 +1,12 @@
+<div class="dialog">
+  <h1 mat-dialog-title>Нов коментар</h1>
+  <div mat-dialog-content>
+    <mat-form-field>
+      <textarea matInput [(ngModel)]="comment" placeholder="Добави нов коментар"></textarea>
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onCancel()">Откажи</button>
+    <button mat-button (click)="onSave()">Запази</button>
+  </div>
+</div>

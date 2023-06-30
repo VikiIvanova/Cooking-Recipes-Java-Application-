@@ -1,0 +1,36 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.home-page-title {
+  font-size: 60px;
+  color: #5f6c47;
+  display: flex;
+  justify-content: center;
+  margin-top: 80px;
+  font-family: 'Satisfy', cursive;
+}
+
+.home-page-title-p {
+  font-size: 25px;
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+  color: #5f6c47;
+  font-family: 'Satisfy', cursive;
+}
+
+/*@media (max-width: 768px) {*/
+/*  .home-page {*/
+/*    background-size: contain;*/
+/*  }*/
+/*}*/
+
+/*@media (max-width: 480px) {*/
+/*  .home-page {*/
+/*    background-size: contain;*/
+/*  }*/
+/*}*/
+
+
