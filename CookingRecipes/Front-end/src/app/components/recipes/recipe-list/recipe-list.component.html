@@ -5,7 +5,7 @@
       <mat-card-header>
         <mat-card-title class="recipe-name">{{ recipe.name }}</mat-card-title>
       </mat-card-header>
-      <img mat-card-image src="../../../../../../src/main/resources/savedImages/ogreten_image.jpg" alt="recipeImage">
+      <img mat-card-image [src]="recipe.imagePath" alt="recipeImage">
       <mat-card-actions>
         <button mat-button [routerLink]="['/details', recipe.id]">Разгледай</button>
       </mat-card-actions>
@@ -16,4 +16,3 @@
     <p>Няма намерени резултати!</p>
   </div>
 </div>
-

@@ -9,16 +9,12 @@ import com.example.demo.model.Recipe;
 import com.example.demo.model.User;
 import com.example.demo.service.RecipeService;
 import com.example.demo.service.UserService;
-import jakarta.annotation.Resource;
 import jakarta.validation.Valid;
-import org.apache.tomcat.util.json.JSONParser;
 import org.springframework.core.io.UrlResource;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import org.springframework.core.io.Resource;
+import java.net.MalformedURLException;
 import java.io.File;
-import java.io.IOException;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -82,12 +78,13 @@ public class RecipeController {
                 .collect(Collectors.toList());
     }
 
-        @GetMapping("/{id}/image")
-        public String getImage(@PathVariable Long id) {
+    @GetMapping("/{id}/image")
+    public Resource getImage(@PathVariable Long id) throws MalformedURLException {
         Recipe recipe = recipeService.getRecipeByID(id);
         File file = new File(recipe.getImagePath());
         Path path = Path.of(file.getAbsolutePath());
-        return path.toString();
+        return new UrlResource(path.toUri());
     }
+
 
 }

@@ -71,8 +71,9 @@ export class RecipeService {
     return this.http.post<number>('/api/users/createuser', createUserModel);
   }
 
-  getImagePathByRecipeId(id:number): Observable<string> {
-    return this.http.get<string>(`api/recipes/${id}/image`);
+  getImagePathByRecipeId(id: number): Observable<Blob> {
+    return this.http.get(`api/recipes/${id}/image`, { responseType: 'blob' });
   }
+
 
 }

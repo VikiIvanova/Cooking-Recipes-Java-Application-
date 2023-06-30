@@ -80,7 +80,7 @@ export class RecipeAddComponent implements OnInit {
       rate: 0,
       ownerId: this.userId
     } as CreateRecipeModel;
-
+    console.log(createRecipe);
     this.recipeService.addRecipe(createRecipe).subscribe(() => {
       this.router.navigate(['homePage']);
     });

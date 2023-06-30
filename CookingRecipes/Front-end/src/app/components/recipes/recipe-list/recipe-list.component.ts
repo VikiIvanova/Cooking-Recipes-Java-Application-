@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RecipeModel } from "../../../interfaces/recipe.model";
 import { RecipeService } from "../../../services/recipe.service";
 import { Category } from "../../../interfaces/category";
@@ -8,7 +8,7 @@ import { Category } from "../../../interfaces/category";
   templateUrl: './recipe-list.component.html',
   styleUrls: ['./recipe-list.component.css']
 })
-export class RecipeListComponent {
+export class RecipeListComponent implements OnInit {
   searchResults: RecipeModel[] = [];
 
   constructor(private recipeService: RecipeService) { }
@@ -25,7 +25,17 @@ export class RecipeListComponent {
     this.recipeService.getAllRecipes()
       .subscribe(recipes => {
         this.searchResults = recipes;
+        this.fetchRecipeImages();
       });
+  }
+
+  fetchRecipeImages(): void {
+    for (const recipe of this.searchResults) {
+      this.recipeService.getImagePathByRecipeId(recipe.id)
+        .subscribe((imageBlob: Blob) => {
+          recipe.imagePath = URL.createObjectURL(imageBlob);
+        });
+    }
   }
 
   search(searchParams: { name: string, productName: string, category: Category }): void {
@@ -35,9 +45,11 @@ export class RecipeListComponent {
       this.recipeService.searchRecipes(name, category, productName)
         .subscribe(recipes => {
           this.searchResults = recipes;
+          this.fetchRecipeImages();
         });
     } else {
       this.fetchAllRecipes();
     }
   }
 }
+

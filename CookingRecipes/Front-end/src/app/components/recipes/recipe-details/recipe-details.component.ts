@@ -39,8 +39,8 @@ export class RecipeDetailsComponent implements OnInit {
       this.service.getCommentsByRecipeId(this.id).subscribe((comments) => {
         this.recipeComments = comments;
       });
-      this.service.getImagePathByRecipeId(this.id).subscribe((imagePath) => {
-        this.imagePath = imagePath;
+      this.service.getImagePathByRecipeId(this.id).subscribe((imageBlob) => {
+        this.imagePath = URL.createObjectURL(imageBlob);
       });
     });
 
